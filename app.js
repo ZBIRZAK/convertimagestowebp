@@ -134,16 +134,44 @@ async function convertAll() {
   }
 }
 
-function downloadAll() {
-  for (const item of items) {
-    if (!item.blob || !item.url) continue;
-    const a = document.createElement("a");
-    a.href = item.url;
-    a.download = item.outputName;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+async function downloadAll() {
+  // Filter items that have been converted (have blobs)
+  const convertedItems = items.filter(item => item.blob && item.url);
+  
+  if (convertedItems.length === 0) {
+    alert('No converted images to download');
+    return;
   }
+
+  // Create a new JSZip instance
+  const zip = new JSZip();
+  
+  // Add each converted image to the zip
+  for (const item of convertedItems) {
+    // Extract the file name without path
+    const fileName = item.outputName;
+    // Add the blob to the zip with the file name
+    zip.file(fileName, item.blob);
+  }
+  
+  // Generate the zip file as a blob
+  const zipBlob = await zip.generateAsync({type: "blob"});
+  
+  // Create a temporary URL for the zip blob
+  const zipUrl = URL.createObjectURL(zipBlob);
+  
+  // Create a temporary link element to trigger the download
+  const link = document.createElement("a");
+  link.href = zipUrl;
+  link.download = "converted-images.zip";
+  
+  // Append to the body, click and then remove
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  
+  // Clean up the temporary URL
+  URL.revokeObjectURL(zipUrl);
 }
 
 qualityInput.addEventListener("input", updateQualityLabel);

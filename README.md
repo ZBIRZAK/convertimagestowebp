@@ -8,6 +8,7 @@ Static web app that bulk-converts images (PNG/JPG/JPEG) to WebP in the browser. 
 - **No Registration:** Free to use without account
 - **High Quality:** Adjustable quality settings (0-100%)
 - **Batch Processing:** Convert multiple images at once
+- **ZIP Download:** Download all converted images in a single ZIP file
 - **SEO Optimized:** Fully optimized for search engines
 
 ## Deploy to Vercel (recommended)
