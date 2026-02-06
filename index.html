@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bulk Image to WebP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Multisite-ready static app</p>
+          <h1>Bulk Image to WebP</h1>
+          <p class="sub">
+            Convert PNG, JPG, JPEG, and JPAG to WebP right in the browser. No uploads, no server.
+          </p>
+        </div>
+        <div class="controls">
+          <label>
+            Quality
+            <input id="quality" type="range" min="0" max="100" value="85" />
+            <span id="qualityValue">85</span>
+          </label>
+          <button id="clearBtn" class="ghost">Clear</button>
+        </div>
+      </header>
+
+      <section class="drop" id="dropZone">
+        <input id="fileInput" type="file" accept="image/png,image/jpeg,image/jpg" multiple />
+        <div class="drop-inner">
+          <div class="drop-title">Drop images here</div>
+          <div class="drop-sub">or click to choose files</div>
+        </div>
+      </section>
+
+      <section class="actions">
+        <button id="convertBtn" class="primary" disabled>Convert to WebP</button>
+        <button id="downloadAllBtn" class="ghost" disabled>Download All</button>
+      </section>
+
+      <section>
+        <div class="list-head">
+          <span>Files</span>
+          <span>Status</span>
+          <span>Size</span>
+          <span>Download</span>
+        </div>
+        <div id="list" class="list"></div>
+      </section>
+
+      <footer class="foot">
+        <div>Works on any static host. Just deploy these files.</div>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
