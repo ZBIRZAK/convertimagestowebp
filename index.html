@@ -3,23 +3,40 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bulk Image to WebP</title>
+    <title>Bulk Image to WebP - Convert PNG, JPG to WebP Online | Fast & Secure</title>
+    <meta name="description" content="Free online tool to convert PNG and JPG images to WebP format in bulk. Convert images directly in your browser - no uploads, no server processing. Fast, secure and privacy-friendly." />
+    <meta name="keywords" content="WebP converter, image converter, PNG to WebP, JPG to WebP, bulk image converter, online image converter, WebP format, image compression, browser-based conversion" />
+    <meta name="author" content="ConvWebp" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bulk Image to WebP Converter" />
+    <meta property="og:description" content="Free online tool to convert PNG and JPG images to WebP format in bulk. Convert images directly in your browser - no uploads, no server processing." />
+    <meta property="og:url" content="https://your-vercel-domain.vercel.app/" />
+    <meta property="og:site_name" content="WebP Converter" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bulk Image to WebP Converter" />
+    <meta name="twitter:description" content="Free online tool to convert PNG and JPG images to WebP format in bulk. Convert images directly in your browser - no uploads, no server processing." />
+    
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="page">
       <header class="hero">
         <div>
-          <p class="eyebrow">Multisite-ready static app</p>
-          <h1>Bulk Image to WebP</h1>
+          <p class="eyebrow">Privacy-focused image converter</p>
+          <h1>Bulk Image to WebP Converter</h1>
           <p class="sub">
-            Convert PNG, JPG, JPEG, and JPAG to WebP right in the browser. No uploads, no server.
+            Convert PNG, JPG, JPEG to WebP format instantly in your browser. 100% secure - images never leave your device. No uploads, no server processing.
           </p>
         </div>
         <div class="controls">
-          <label>
+          <label for="quality">
             Quality
-            <input id="quality" type="range" min="0" max="100" value="85" />
+            <input id="quality" type="range" min="0" max="100" value="85" aria-label="Adjust image quality" />
             <span id="qualityValue">85</span>
           </label>
           <button id="clearBtn" class="ghost">Clear</button>
@@ -47,6 +64,33 @@
           <span>Download</span>
         </div>
         <div id="list" class="list"></div>
+      </section>
+
+      <section class="features">
+        <h2>Why Choose Our WebP Converter?</h2>
+        <ul>
+          <li><strong>Fast Processing:</strong> Convert images instantly in your browser</li>
+          <li><strong>Secure & Private:</strong> Images never leave your device</li>
+          <li><strong>No Registration:</strong> Free to use without account</li>
+          <li><strong>High Quality:</strong> Adjustable quality settings (0-100%)</li>
+          <li><strong>Batch Processing:</strong> Convert multiple images at once</li>
+        </ul>
+      </section>
+
+      <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <details>
+          <summary>What is WebP format?</summary>
+          <p>WebP is an image format developed by Google that provides superior lossless and lossy compression for images compared to PNG and JPEG.</p>
+        </details>
+        <details>
+          <summary>Is my data safe?</summary>
+          <p>Absolutely! All conversions happen locally in your browser. Your images never leave your device.</p>
+        </details>
+        <details>
+          <summary>What file types do you support?</summary>
+          <p>We support PNG, JPG, and JPEG formats for conversion to WebP format.</p>
+        </details>
       </section>
 
       <footer class="foot">

@@ -188,6 +188,48 @@ button:disabled {
   color: var(--danger);
 }
 
+.features, .faq {
+  margin: 40px 0;
+  padding: 24px;
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px var(--shadow);
+}
+
+.features h2, .faq h2 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.features ul {
+  padding-left: 20px;
+  margin: 15px 0;
+}
+
+.features li {
+  margin-bottom: 10px;
+}
+
+.faq details {
+  margin-bottom: 12px;
+  padding: 12px;
+  background: rgba(19, 46, 42, 0.6);
+  border-radius: 8px;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--accent);
+  padding: 8px 0;
+}
+
+.faq p {
+  margin: 10px 0 0 0;
+  color: var(--muted);
+  padding-left: 10px;
+}
+
 .foot {
   margin-top: 36px;
   color: var(--muted);
