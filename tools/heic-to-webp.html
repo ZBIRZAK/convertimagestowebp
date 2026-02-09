@@ -3,24 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lazy‑Load Tester</title>
-    <meta name="description" content="Test HTML snippets for lazy loading and image best practices." />
+    <title>HEIC to WebP Converter</title>
+    <meta name="description" content="Convert HEIC/HEIF images to WebP in the browser. No uploads." />
     <link rel="stylesheet" href="../styles.css" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4424746392677797" crossorigin="anonymous"></script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QPK5DDBC3G"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QPK5DDBC3G');
-</script>  </head>
-  <body data-tool="lazyload-tester">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4424746392677797" crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPK5DDBC3G"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QPK5DDBC3G');
+    </script>
+  </head>
+  <body data-tool="heic-to-webp">
     <header class="site-header">
       <div class="container nav">
-        <a class="logo" href="../index.html"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
-                                                        <nav class="nav-links">
+        <a class="logo" href="../index.html"><span class="bold">convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
+                        <nav class="nav-links">
           <a href="webp-converter.html">Bulk WebP</a>
           <a href="webp-to-jpg.html">WebP → JPG</a>
           <a href="heic-to-webp.html">HEIC → WebP</a>
@@ -75,6 +75,7 @@
           <a href="image-compressor.html">Image Reducer</a>
           <a href="lazyload-tester.html">Lazy‑Load Tester</a>
           <a href="pagespeed-image-checker.html">PageSpeed Checker</a>
+          <a href="heic-to-webp.html">HEIC → WebP</a>
           <div class="mobile-group">Guides</div>
           <a href="../guides/what-is-webp.html">What is WebP?</a>
           <a href="../guides/webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
@@ -88,45 +89,66 @@
     <main class="container">
       <section class="page-header">
         <p class="eyebrow">Tool</p>
-        <h1>Lazy‑Load Tester</h1>
-        <p class="sub">Paste your HTML snippet and check lazy‑loading, dimensions, and `srcset` usage.</p>
+        <h1>HEIC → WebP</h1>
+        <p class="sub">Convert iPhone HEIC photos to WebP locally in your browser.</p>
       </section>
 
       <section class="tool-shell">
-        <label>
-          HTML snippet
-          <textarea id="htmlInput" rows="10" placeholder="Paste product image HTML here..."></textarea>
-        </label>
-        <section class="actions">
-          <button id="analyzeBtn" class="primary">Analyze</button>
+        <header class="controls">
+          <label>
+            Quality
+            <div class="range-row">
+              <input id="quality" type="range" min="50" max="100" value="85" />
+              <span id="qualityValue">85</span>
+            </div>
+          </label>
           <button id="clearBtn" class="ghost">Clear</button>
+        </header>
+
+        <section class="drop" id="dropZone">
+          <input id="fileInput" type="file" accept=".heic,.heif,image/heic,image/heif" multiple />
+          <div class="drop-inner">
+            <div class="drop-title">Drop HEIC images here</div>
+            <div class="drop-sub">or click to choose files</div>
+          </div>
         </section>
-        <div id="lazySummary" class="result"></div>
-        <div id="lazyResults" class="result"></div>
+
+        <section class="actions">
+          <button id="convertBtn" class="primary" disabled>Convert to WebP</button>
+          <button id="downloadAllBtn" class="ghost" disabled>Download All</button>
+        </section>
+
+        <section>
+          <div class="list-head">
+            <span>Files</span>
+            <span>Status</span>
+            <span>Size</span>
+            <span>Download</span>
+          </div>
+          <div id="list" class="list"></div>
+        </section>
       </section>
+
       <section class="section">
-        <h2>Guides to learn more</h2>
-        <div class="link-grid">
-          <a class="link-card" href="../guides/what-is-webp.html">What is WebP?</a>
-          <a class="link-card" href="../guides/webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
-          <a class="link-card" href="../guides/webp-seo.html">WebP & SEO</a>
-          <a class="link-card" href="../guides/webp-for-ecommerce.html">WebP for E-commerce</a>
-          <a class="link-card" href="../guides/product-image-optimization.html">Product Image Optimization</a>
+        <div class="article">
+          <p class="note">HEIC conversion happens locally in your browser. Images are not uploaded.</p>
         </div>
-      </section>    </main>
+      </section>
+    </main>
 
     <footer class="site-footer">
       <div class="container footer-grid">
         <div>
-          <div class="logo"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></div>
-          <p class="muted">A focused performance micro‑platform for e-commerce owners.</p>
+          <div class="logo"><span class="bold">convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></div>
+          <p class="muted">A focused performance micro‑platform for e‑commerce owners.</p>
           <p class="muted">© 2026 <a href="https://www.convertimagestowebp.com/">convertimagestowebp.com</a></p>
         </div>
         <div>
-          <div class="footer-title">Guides</div>
-          <a href="../guides/webp-for-ecommerce.html">E-commerce Guide</a>
-          <a href="../guides/webp-seo.html">WebP & SEO</a>
-          <a href="../guides/what-is-webp.html">What is WebP?</a>
+          <div class="footer-title">Tools</div>
+          <a href="webp-converter.html">Bulk WebP Converter</a>
+          <a href="webp-to-jpg.html">WebP → JPG</a>
+          <a href="image-compressor.html">Image Reducer</a>
+          <a href="heic-to-webp.html">HEIC → WebP</a>
         </div>
         <div>
           <div class="footer-title">Legal</div>
@@ -135,25 +157,12 @@
           <a href="../contact.html">Contact</a>
         </div>
       </div>
-        
     </footer>
 
+    <script src="https://unpkg.com/heic2any/dist/heic2any.min.js"></script>
     <script src="../app.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -31,6 +31,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.convertimagestowebp.com/tools/heic-to-webp.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.convertimagestowebp.com/guides/what-is-webp.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

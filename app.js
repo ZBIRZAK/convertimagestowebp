@@ -19,7 +19,7 @@ const htmlInput = document.getElementById("htmlInput");
 const psSummary = document.getElementById("psSummary");
 const psTable = document.getElementById("psTable");
 
-const allowedTypes = new Set(["image/png", "image/jpeg", "image/webp"]);
+const allowedTypes = new Set(["image/png", "image/jpeg", "image/webp", "image/heic", "image/heif"]);
 let items = [];
 
 function setQualityLabel() {
@@ -84,11 +84,19 @@ function renderList() {
 
 function addFiles(fileList) {
   for (const file of fileList) {
-    if (!allowedTypes.has(file.type)) {
+    const isHeic =
+      /\.heic$|\.heif$/i.test(file.name) ||
+      ["image/heic", "image/heif"].includes(file.type);
+
+    if (tool === "heic-to-webp" && isHeic) {
+      // allow HEIC even if file.type is empty
+    } else if (!allowedTypes.has(file.type)) {
       continue;
     }
+
     if (tool === "webp-converter" && file.type === "image/webp") continue;
     if (tool === "webp-to-jpg" && file.type !== "image/webp") continue;
+    if (tool === "heic-to-webp" && !isHeic) continue;
 
     items.push({
       file,
@@ -119,6 +127,25 @@ function clearAll() {
 }
 
 async function convertFile(item, quality) {
+  if (tool === "heic-to-webp") {
+    if (typeof heic2any !== "function") {
+      throw new Error("HEIC converter not loaded");
+    }
+    const heicResult = await heic2any({ blob: item.file, toType: "image/jpeg" });
+    const heicBlob = Array.isArray(heicResult) ? heicResult[0] : heicResult;
+    const imageBitmap = await createImageBitmap(heicBlob);
+    const canvas = document.createElement("canvas");
+    canvas.width = imageBitmap.width;
+    canvas.height = imageBitmap.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(imageBitmap, 0, 0);
+    const blob = await new Promise((resolve) =>
+      canvas.toBlob(resolve, "image/webp", quality)
+    );
+    if (!blob) throw new Error("Conversion failed");
+    return blob;
+  }
+
   const imageBitmap = await createImageBitmap(item.file);
   const canvas = document.createElement("canvas");
 
@@ -153,6 +180,12 @@ async function convertFile(item, quality) {
 
 async function convertAll() {
   const quality = qualityInput ? Number(qualityInput.value) / 100 : 0.85;
+  const originalText = convertBtn ? convertBtn.textContent : null;
+  if (convertBtn) {
+    convertBtn.textContent = "Processing...";
+    convertBtn.disabled = true;
+    convertBtn.classList.add("is-loading");
+  }
 
   for (const item of items) {
     item.error = null;
@@ -173,6 +206,12 @@ async function convertAll() {
     }
     renderList();
   }
+
+  if (convertBtn && originalText) {
+    convertBtn.textContent = originalText;
+    convertBtn.classList.remove("is-loading");
+  }
+  renderList();
 }
 
 function downloadAll() {
@@ -369,7 +408,7 @@ function initPageSpeedChecker() {
   });
 }
 
-if (["webp-converter", "webp-to-jpg", "image-compressor"].includes(tool)) {
+if (["webp-converter", "webp-to-jpg", "image-compressor", "heic-to-webp"].includes(tool)) {
   initFileTool();
 }
 
@@ -401,3 +440,4 @@ document.addEventListener("click", (event) => {
     toggle.setAttribute("aria-expanded", "false");
   });
 });
+
