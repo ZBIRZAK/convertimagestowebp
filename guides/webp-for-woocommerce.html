@@ -1,0 +1,155 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebP for WooCommerce (2026 Guide)</title>
+    <meta name="description" content="A practical WebP guide for WooCommerce product images, sizes, and speed improvements." />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="logo" href="../index.html"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
+        <nav class="nav-links">
+          <a href="../tools/webp-converter.html">Bulk WebP</a>
+          <a href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+          <a href="../tools/lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="nav-group">
+            <button class="nav-trigger" type="button">Guides ▾</button>
+            <div class="nav-menu">
+              <a href="what-is-webp.html">What is WebP?</a>
+              <a href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+              <a href="webp-seo.html">WebP & SEO</a>
+              <a href="webp-for-ecommerce.html">E-commerce Guide</a>
+              <a href="product-image-optimization.html">Image Optimization</a>
+            </div>
+          </div>
+        </nav>
+        <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+        <div class="mobile-menu" id="mobileMenu">
+          <a href="../tools/webp-converter.html">Bulk WebP</a>
+          <a href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+          <a href="../tools/lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="mobile-group">Guides</div>
+          <a href="what-is-webp.html">What is WebP?</a>
+          <a href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+          <a href="webp-seo.html">WebP & SEO</a>
+          <a href="webp-for-ecommerce.html">E-commerce Guide</a>
+          <a href="product-image-optimization.html">Image Optimization</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-header">
+        <p class="eyebrow">Guide</p>
+        <h1>WebP for WooCommerce</h1>
+        <p class="sub">A complete workflow to optimize WooCommerce product images.</p>
+      </section>
+
+      <article class="article">
+        <p>WooCommerce stores are often slowed down by heavy product images. WebP is the fastest way to cut image weight without sacrificing detail. This guide gives you a step‑by‑step process that works with any WooCommerce theme.</p>
+
+        <h2>Why WooCommerce pages get heavy</h2>
+        <p>WooCommerce generates multiple image sizes for each product. If your source images are too large or unoptimized, every size becomes heavy. That weight shows up on category pages, product pages, cart, and related products sections.</p>
+
+        <h2>Pick the right source size</h2>
+        <p>Export main product images at 1600-2000px width. This gives you sharp zoom without oversized files. If your theme does not use zoom, you can go closer to 1400-1600px to save more weight.</p>
+
+        <h2>Convert to WebP in bulk</h2>
+        <p>Use the Bulk WebP Converter with quality 80-85. For detailed products, test 85-90. Convert a batch, then review on mobile to confirm sharpness and texture detail are preserved.</p>
+
+        <h2>Upload and regenerate thumbnails</h2>
+        <p>After uploading WebP images, regenerate thumbnails so WooCommerce uses WebP across all image sizes. This step is crucial because most performance gains come from thumbnails on category and cart pages.</p>
+
+        <h2>Check the product gallery</h2>
+        <p>Verify that the gallery uses WebP for each image. Ensure that the hero image loads eagerly and that only below‑the‑fold images are lazy‑loaded. The Lazy‑Load Tester helps validate your HTML.</p>
+
+        <h2>Set file size targets</h2>
+        <p>Main image: 160-350 KB. Thumbnails: under 80 KB. Category images: under 200 KB. These targets keep pages fast while maintaining quality. If you sell high‑detail products, allow 300-450 KB but avoid higher sizes.</p>
+
+        <h2>Measure performance improvements</h2>
+        <p>Run PageSpeed Insights on your top product pages. Compare LCP before and after WebP. You should see improvements when the hero image is lighter and loads quickly.</p>
+
+        <h2>Common WooCommerce pitfalls</h2>
+        <p>Do not leave mixed formats in your media library. Do not rely on PNG for photos. Do not ignore thumbnail regeneration. These are the most frequent issues that prevent WebP from delivering its full benefit.</p>
+
+        <h2>FAQ</h2>
+        <p><strong>Does WooCommerce support WebP?</strong> Yes, modern WordPress and WooCommerce versions support WebP uploads.</p>
+        <p><strong>Do I need a plugin?</strong> Not necessarily. You can convert locally and upload WebP directly.</p>
+        <p><strong>Will WebP break zoom?</strong> No, as long as your source size is sufficient.</p>
+        <p><strong>How often should I re‑optimize?</strong> Review new images weekly and re‑optimize when you change theme settings.</p>
+
+        <h2>WooCommerce image size settings</h2>
+        <p>WooCommerce lets you define thumbnail and single product image sizes in the Customizer or settings. Make sure those sizes align with your theme layout. If your single product image is displayed at 1000px wide, there is no reason to upload 3000px images. Correct sizing reduces both file size and processing overhead.</p>
+
+        <h2>Variation images and color swatches</h2>
+        <p>Stores with many variations often have dozens of images per product. Treat variation images like a separate mini‑catalog. Convert them to WebP and keep them under the same size targets. Variation images are frequently loaded as users change options, so they can silently inflate page weight.</p>
+
+        <h2>Theme differences that matter</h2>
+        <p>Some themes load large galleries and zoom features by default. If you use zoom, keep a high‑quality WebP version for the zoom image but still compress the main display image. If you do not use zoom, disable it to reduce unnecessary downloads.</p>
+
+        <h2>A simple rollout plan</h2>
+        <p>Week 1: convert and upload images for your top 20 products, then regenerate thumbnails. Week 2: expand to the next 100 products and update category pages. This staged rollout helps you spot issues early, keeps quality consistent, and delivers measurable speed gains.</p>
+
+        <h2>Keep product images consistent</h2>
+        <p>WooCommerce grids look best when all products share the same aspect ratio. If you allow mixed shapes, the layout will jump and users will see uneven rows. Pick a ratio, crop consistently, and keep file sizes within your targets. This simple step makes your store look more premium.</p>
+
+        <h2>Gallery performance checklist</h2>
+        <p>Check that each gallery image is served as WebP, that thumbnails are under 80 KB, and that the hero image loads first without lazy loading. Verify srcset is present so mobile users get smaller image sizes. These checks reduce load time without sacrificing the shopping experience.</p>
+        <p>Revisit these checks after theme updates because image handling can change without notice.</p>
+
+        <p class="note">Start with your top 20 products. Convert, upload, regenerate thumbnails, and measure the impact on LCP.</p>
+                      <h2>Related guides</h2>
+        <div class="link-grid">
+          <a class="link-card" href="what-is-webp.html">What is WebP?</a>
+          <a class="link-card" href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+          <a class="link-card" href="webp-seo.html">WebP & SEO</a>
+          <a class="link-card" href="webp-for-ecommerce.html">WebP for E-commerce</a>
+          <a class="link-card" href="product-image-optimization.html">Product Image Optimization</a>
+        </div>
+        <h2>Try the tools</h2>
+        <div class="link-grid">
+          <a class="link-card" href="../tools/webp-converter.html">Bulk WebP Converter</a>
+          <a class="link-card" href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a class="link-card" href="../tools/image-compressor.html">Image Reducer</a>
+          <a class="link-card" href="../tools/lazyload-tester.html">Lazy‑Load Tester</a>
+          <a class="link-card" href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+        </div>      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="logo"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></div>
+          <p class="muted">A focused performance micro‑platform for e‑commerce owners.</p>
+          <p class="muted">© 2026 <a href="https://www.convertimagestowebp.com/">convertimagestowebp.com</a></p>
+        </div>
+        <div>
+          <div class="footer-title">Tools</div>
+          <a href="../tools/webp-converter.html">Bulk WebP Converter</a>
+          <a href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+        </div>
+        <div>
+          <div class="footer-title">Legal</div>
+          <a href="../privacy-policy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </div>
+        
+    </footer>
+
+    <script src="../app.js"></script>
+  </body>
+</html>
+
+
+
+

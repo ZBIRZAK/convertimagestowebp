@@ -1,0 +1,153 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image Size Reducer for E-commerce</title>
+    <meta name="description" content="Reduce product image size with smart resizing and compression targets." />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body data-tool="image-compressor">
+    <header class="site-header">
+      <div class="container nav">
+        <a class="logo" href="../index.html"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
+                                        <nav class="nav-links">
+          <a href="webp-converter.html">Bulk WebP</a>
+          <a href="webp-to-jpg.html">WebP → JPG</a>
+          <a href="image-compressor.html">Image Reducer</a>
+          <a href="lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="nav-group">
+            <button class="nav-trigger" type="button">Guides ▾</button>
+            <div class="nav-menu">
+              <a href="../guides/what-is-webp.html">What is WebP?</a>
+              <a href="../guides/webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+              <a href="../guides/webp-seo.html">WebP & SEO</a>
+              <a href="../guides/webp-for-ecommerce.html">E-commerce Guide</a>
+              <a href="../guides/product-image-optimization.html">Image Optimization</a>
+            </div>
+          </div>
+        </nav>
+        <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+        <div class="mobile-menu" id="mobileMenu">
+          <a href="webp-converter.html">Bulk WebP</a>
+          <a href="webp-to-jpg.html">WebP → JPG</a>
+          <a href="image-compressor.html">Image Reducer</a>
+          <a href="lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="mobile-group">Guides</div>
+          <a href="../guides/what-is-webp.html">What is WebP?</a>
+          <a href="../guides/webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+          <a href="../guides/webp-seo.html">WebP & SEO</a>
+          <a href="../guides/webp-for-ecommerce.html">E-commerce Guide</a>
+          <a href="../guides/product-image-optimization.html">Image Optimization</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-header">
+        <p class="eyebrow">Tool</p>
+        <h1>Image Size Reducer</h1>
+        <p class="sub">Resize and compress product images for faster pages.</p>
+      </section>
+
+      <section class="tool-shell">
+        <div class="form-grid">
+          <label>
+            Max width (px)
+            <input id="maxWidth" type="number" min="320" max="4000" value="2000" />
+          </label>
+          <label>
+            Output format
+            <select id="outputFormat">
+              <option value="webp" selected>WebP</option>
+              <option value="jpg">JPG</option>
+            </select>
+          </label>
+          <label>
+            Quality
+            <input id="quality" type="range" min="50" max="100" value="85" />
+            <span id="qualityValue">85</span>
+          </label>
+          <button id="clearBtn" class="ghost">Clear</button>
+        </div>
+
+        <section class="drop" id="dropZone">
+          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/jpg,image/webp" multiple />
+          <div class="drop-inner">
+            <div class="drop-title">Drop product images here</div>
+            <div class="drop-sub">Resize and compress in one pass</div>
+          </div>
+        </section>
+
+        <section class="actions">
+          <button id="convertBtn" class="primary" disabled>Compress</button>
+          <button id="downloadAllBtn" class="ghost" disabled>Download All</button>
+        </section>
+
+        <section>
+          <div class="list-head">
+            <span>Files</span>
+            <span>Status</span>
+            <span>Size</span>
+            <span>Download</span>
+          </div>
+          <div id="list" class="list"></div>
+        </section>
+      </section>
+
+      <section class="section">
+        <div class="article">
+          <h2>Targets</h2>
+          <p>Main product images: 160-350 KB. Thumbnails: under 80 KB. For detailed products, accept 300-450 KB but avoid larger files.</p>
+        </div>
+      </section>
+      <section class="section">
+        <h2>Guides to learn more</h2>
+        <div class="link-grid">
+          <a class="link-card" href="../guides/what-is-webp.html">What is WebP?</a>
+          <a class="link-card" href="../guides/webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+          <a class="link-card" href="../guides/webp-seo.html">WebP & SEO</a>
+          <a class="link-card" href="../guides/webp-for-ecommerce.html">WebP for E-commerce</a>
+          <a class="link-card" href="../guides/product-image-optimization.html">Product Image Optimization</a>
+        </div>
+      </section>    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="logo"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></div>
+          <p class="muted">A focused performance micro‑platform for e-commerce owners.</p>
+          <p class="muted">© 2026 <a href="https://www.convertimagestowebp.com/">convertimagestowebp.com</a></p>
+        </div>
+        <div>
+          <div class="footer-title">Guides</div>
+          <a href="../guides/webp-for-ecommerce.html">E-commerce Guide</a>
+          <a href="../guides/webp-seo.html">WebP & SEO</a>
+          <a href="../guides/what-is-webp.html">What is WebP?</a>
+        </div>
+        <div>
+          <div class="footer-title">Legal</div>
+          <a href="../privacy-policy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </div>
+        
+    </footer>
+
+    <script src="../app.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

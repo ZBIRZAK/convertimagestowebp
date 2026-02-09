@@ -1,0 +1,153 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product Image Optimization Checklist (E-commerce)</title>
+    <meta name="description" content="A detailed checklist to optimize product images for speed, SEO, and conversions." />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="logo" href="../index.html"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
+        <nav class="nav-links">
+          <a href="../tools/webp-converter.html">Bulk WebP</a>
+          <a href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+          <a href="../tools/lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="nav-group">
+            <button class="nav-trigger" type="button">Guides ▾</button>
+            <div class="nav-menu">
+              <a href="what-is-webp.html">What is WebP?</a>
+              <a href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+              <a href="webp-seo.html">WebP & SEO</a>
+              <a href="webp-for-ecommerce.html">E-commerce Guide</a>
+              <a href="product-image-optimization.html">Image Optimization</a>
+            </div>
+          </div>
+        </nav>
+        <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+        <div class="mobile-menu" id="mobileMenu">
+          <a href="../tools/webp-converter.html">Bulk WebP</a>
+          <a href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+          <a href="../tools/lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="mobile-group">Guides</div>
+          <a href="what-is-webp.html">What is WebP?</a>
+          <a href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+          <a href="webp-seo.html">WebP & SEO</a>
+          <a href="webp-for-ecommerce.html">E-commerce Guide</a>
+          <a href="product-image-optimization.html">Image Optimization</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-header">
+        <p class="eyebrow">Guide</p>
+        <h1>Product image optimization checklist</h1>
+        <p class="sub">A repeatable process for faster product pages and higher conversion.</p>
+      </section>
+
+      <article class="article">
+        <p>This checklist is built for e‑commerce owners who want practical results without a full redesign. Use it every time you add new products or update images. The goal is simple: fast pages, sharp visuals, and consistent performance across your catalog.</p>
+
+        <h2>1. Start with a clear priority list</h2>
+        <p>Not every product needs the same attention. Start with your top 20 products and highest‑traffic categories. Improving these pages has the biggest revenue impact. Once those are optimized, move to the rest of the catalog in batches.</p>
+
+        <h2>2. Standardize image dimensions</h2>
+        <p>Choose a single aspect ratio for product photos. Square or 4:5 both work well for most stores. Standardizing sizes keeps your grid clean and avoids layout shift on category pages. For main product images, export at 1600-2000px width.</p>
+
+        <h2>3. Use WebP as the default format</h2>
+        <p>WebP should be the primary format for product images, category images, and banners. It reduces size while keeping quality. Keep PNG only for logos and icons. Keep JPG only for external marketplaces that require it.</p>
+
+        <h2>4. Set file size targets</h2>
+        <p>Targets keep your performance consistent. Main product image: 160-350 KB. Thumbnails: under 80 KB. Category images: under 200 KB. If you sell high‑detail products, you can stretch the main image to 300-450 KB, but anything above that should be a rare exception.</p>
+
+        <h2>5. Compress with a consistent quality range</h2>
+        <p>For WebP, start with quality 80-85. For JPG fallback, 85-90 is a reasonable target. The goal is to preserve product detail without bloating file size. Review a few images on mobile screens, because that is where performance matters most.</p>
+
+        <h2>6. Regenerate thumbnails</h2>
+        <p>After uploading new WebP images, regenerate thumbnails so every size is optimized. This prevents the common mistake where the main image is WebP but thumbnails are still JPG or PNG.</p>
+
+        <h2>7. Validate lazy loading</h2>
+        <p>Lazy loading should apply to images below the fold. The hero product image should load eagerly to improve LCP. Use the Lazy‑Load Tester tool to confirm that your HTML includes width and height attributes and proper loading settings.</p>
+
+        <h2>8. Use responsive images</h2>
+        <p>Make sure your theme outputs srcset so browsers can choose the correct size for each device. Serving a 2000px image to a 375px mobile screen is wasted bandwidth and slows down your site.</p>
+
+        <h2>9. Test and track results</h2>
+        <p>Run PageSpeed Insights on product and category pages. Track LCP, CLS, and total page weight before and after optimization. Even small improvements can result in better rankings and conversion.</p>
+
+        <h2>10. Build a repeatable workflow</h2>
+        <p>Document the steps for new products: export size, convert to WebP, upload, regenerate thumbnails, and verify. Consistency is what keeps a store fast as it grows.</p>
+
+        <h2>FAQ</h2>
+        <p><strong>Is optimization still needed if I use a CDN?</strong> Yes. A CDN delivers faster, but large images still slow down rendering and hurt Core Web Vitals.</p>
+        <p><strong>Should I use lossless WebP?</strong> Only for logos or graphics. For photos, lossy WebP is usually the best balance.</p>
+        <p><strong>Do I need to re‑optimize old images?</strong> Yes, if they are large. Start with the top products and work in batches.</p>
+
+        <h2>Weekly maintenance routine</h2>
+        <p>Set a weekly reminder to review new products and any updated images. Check file sizes, confirm WebP is still being served, and spot oversized uploads before they impact performance. This light maintenance prevents a slow creep in page weight over time.</p>
+
+        <h2>Team workflow tips</h2>
+        <p>If multiple people upload images, provide a simple one‑page SOP: required width, required format, target file size, and a quick checklist. Consistent uploads reduce the need for rework and keep your catalog looking professional across all categories.</p>
+
+        <h2>How CDN and caching fit in</h2>
+        <p>A CDN helps deliver images faster, but it cannot make large files small. Optimization should always happen before caching. Use a CDN after you have reduced sizes with WebP to get the best combined effect: smaller files delivered faster.</p>
+
+        <h2>Quality assurance spot checks</h2>
+        <p>Pick five products from different categories and review their images on mobile and desktop. Look for banding, soft edges, or color shifts. If you see any issues, increase WebP quality by 5 points for that category and re‑export. A small QA pass like this keeps visual quality consistent without bloating the entire catalog.</p>
+
+        <p class="note">Use the Bulk WebP Converter and Image Reducer tools to apply this checklist in minutes.</p>
+                      <h2>Related guides</h2>
+        <div class="link-grid">
+          <a class="link-card" href="what-is-webp.html">What is WebP?</a>
+          <a class="link-card" href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+          <a class="link-card" href="webp-seo.html">WebP & SEO</a>
+          <a class="link-card" href="webp-for-ecommerce.html">WebP for E-commerce</a>
+          <a class="link-card" href="product-image-optimization.html">Product Image Optimization</a>
+        </div>
+        <h2>Try the tools</h2>
+        <div class="link-grid">
+          <a class="link-card" href="../tools/webp-converter.html">Bulk WebP Converter</a>
+          <a class="link-card" href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a class="link-card" href="../tools/image-compressor.html">Image Reducer</a>
+          <a class="link-card" href="../tools/lazyload-tester.html">Lazy‑Load Tester</a>
+          <a class="link-card" href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+        </div>      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="logo"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></div>
+          <p class="muted">A focused performance micro‑platform for e‑commerce owners.</p>
+          <p class="muted">© 2026 <a href="https://www.convertimagestowebp.com/">convertimagestowebp.com</a></p>
+        </div>
+        <div>
+          <div class="footer-title">Tools</div>
+          <a href="../tools/webp-converter.html">Bulk WebP Converter</a>
+          <a href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+        </div>
+        <div>
+          <div class="footer-title">Legal</div>
+          <a href="../privacy-policy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </div>
+
+    </footer>
+
+    <script src="../app.js"></script>
+  </body>
+</html>
+
+
+
+

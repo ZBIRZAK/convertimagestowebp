@@ -1,0 +1,154 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebP for WordPress Stores (2026)</title>
+    <meta name="description" content="How WordPress store owners can use WebP to speed up product pages and improve Core Web Vitals." />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="logo" href="../index.html"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
+        <nav class="nav-links">
+          <a href="../tools/webp-converter.html">Bulk WebP</a>
+          <a href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+          <a href="../tools/lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="nav-group">
+            <button class="nav-trigger" type="button">Guides ▾</button>
+            <div class="nav-menu">
+              <a href="what-is-webp.html">What is WebP?</a>
+              <a href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+              <a href="webp-seo.html">WebP & SEO</a>
+              <a href="webp-for-ecommerce.html">E-commerce Guide</a>
+              <a href="product-image-optimization.html">Image Optimization</a>
+            </div>
+          </div>
+        </nav>
+        <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+        <div class="mobile-menu" id="mobileMenu">
+          <a href="../tools/webp-converter.html">Bulk WebP</a>
+          <a href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+          <a href="../tools/lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="mobile-group">Guides</div>
+          <a href="what-is-webp.html">What is WebP?</a>
+          <a href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+          <a href="webp-seo.html">WebP & SEO</a>
+          <a href="webp-for-ecommerce.html">E-commerce Guide</a>
+          <a href="product-image-optimization.html">Image Optimization</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-header">
+        <p class="eyebrow">Guide</p>
+        <h1>WebP for WordPress stores</h1>
+        <p class="sub">A simple, practical guide for WordPress‑based e‑commerce.</p>
+      </section>
+
+      <article class="article">
+        <p>WordPress is flexible, but image performance can suffer when product photos are uploaded without optimization. WebP is the easiest fix. It reduces file size while keeping detail and works well with modern WordPress themes and ecommerce plugins.</p>
+
+        <h2>Why WordPress stores get slow</h2>
+        <p>Most WordPress stores rely on default image sizes, large uploads, and plugins that do not enforce optimization. As your catalog grows, image weight becomes the main reason pages load slowly.</p>
+
+        <h2>When WebP makes the biggest difference</h2>
+        <p>Product pages and category archives have the highest image count. Converting these images to WebP reduces total page weight and improves LCP. This is where you often see the most immediate performance lift.</p>
+
+        <h2>Recommended source sizes</h2>
+        <p>Export your main product images at 1600-2000px width. This keeps zoom sharp while keeping file size manageable. Avoid uploading oversized 3000-4000px images if your theme never displays them.</p>
+
+        <h2>How to add WebP in WordPress</h2>
+        <p>You can convert images before upload using the Bulk WebP Converter. This gives you full control over quality. After upload, regenerate thumbnails so all sizes are in WebP. Some plugins can serve WebP automatically, but manual conversion ensures consistent quality.</p>
+
+        <h2>Quality settings that work</h2>
+        <p>For product photos, a WebP quality of 80-85 is a good default. For detailed items, you can go to 90. Always test a few products to ensure details like texture and edges are preserved.</p>
+
+        <h2>Don’t forget alt text and file names</h2>
+        <p>Image SEO is still important. Use descriptive file names and alt text so Google can understand your products. WebP does not change this; it simply makes the files faster to deliver.</p>
+
+        <h2>Lazy loading done right</h2>
+        <p>WordPress often lazy‑loads images by default. Make sure the hero product image loads eagerly, and only images below the fold use lazy loading. This helps LCP while still saving bandwidth.</p>
+
+        <h2>How to measure impact</h2>
+        <p>Run PageSpeed Insights before and after converting. Track LCP and total page size. The PageSpeed Checker tool helps you validate that your images are within target sizes.</p>
+
+        <h2>Common mistakes</h2>
+        <p>Do not upload PNGs for product photos. Do not leave JPG versions in the same gallery as WebP. Do not ignore thumbnail regeneration. These three mistakes reduce the benefit of WebP.</p>
+
+        <h2>FAQ</h2>
+        <p><strong>Is WebP supported in WordPress?</strong> Yes, modern WordPress versions support WebP uploads.</p>
+        <p><strong>Do I need a plugin?</strong> Not necessarily. You can convert locally and upload WebP files directly.</p>
+        <p><strong>Will WebP break my theme?</strong> Most modern themes support it. Test a few product pages to be safe.</p>
+        <p><strong>How do I handle old posts?</strong> Update images in your highest traffic posts first, then work through the archive over time.</p>
+        <p><strong>Is it worth it for small sites?</strong> Yes, faster pages still improve user experience and rankings.</p>
+
+        <h2>Plugin vs manual conversion</h2>
+        <p>Plugins can generate WebP automatically, but they often use generic quality settings and may leave mixed formats in the library. Manual conversion gives you full control and predictable results. Many stores start manual for their top products, then use a plugin for the long tail.</p>
+
+        <h2>Media library tips</h2>
+        <p>Create a naming convention for product images so you can identify variants and colors easily. Keep your WordPress media library clean by removing obsolete JPGs once WebP is live, but keep backups offline for safety.</p>
+
+        <h2>Theme and plugin compatibility checks</h2>
+        <p>Some WordPress themes bundle their own image optimization or lazy loading. Verify that these settings do not conflict with your WebP workflow. A quick test is to open a product page, inspect the image URLs, and confirm that WebP is being served for every size.</p>
+        <p>If you use a cache or performance plugin, clear cache after uploading new images so visitors receive the updated files. Caching plugins can sometimes keep old JPGs in place until the cache is refreshed.</p>
+
+        <h2>Keep a simple rollback plan</h2>
+        <p>Before replacing your entire library, keep a local backup of your original JPGs. If a specific plugin or integration fails, you can quickly revert those items. In practice, most stores never need to roll back, but having a backup gives you confidence to optimize at scale.</p>
+        <p>Once you are confident, remove unused legacy images to keep your media library clean and avoid confusion for your team.</p>
+
+        <p class="note">If you run a WordPress store, start by converting the top 20 products and regenerate thumbnails right away.</p>
+                      <h2>Related guides</h2>
+        <div class="link-grid">
+          <a class="link-card" href="what-is-webp.html">What is WebP?</a>
+          <a class="link-card" href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+          <a class="link-card" href="webp-seo.html">WebP & SEO</a>
+          <a class="link-card" href="webp-for-ecommerce.html">WebP for E-commerce</a>
+          <a class="link-card" href="product-image-optimization.html">Product Image Optimization</a>
+        </div>
+        <h2>Try the tools</h2>
+        <div class="link-grid">
+          <a class="link-card" href="../tools/webp-converter.html">Bulk WebP Converter</a>
+          <a class="link-card" href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a class="link-card" href="../tools/image-compressor.html">Image Reducer</a>
+          <a class="link-card" href="../tools/lazyload-tester.html">Lazy‑Load Tester</a>
+          <a class="link-card" href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+        </div>      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="logo"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></div>
+          <p class="muted">A focused performance micro‑platform for e‑commerce owners.</p>
+          <p class="muted">© 2026 <a href="https://www.convertimagestowebp.com/">convertimagestowebp.com</a></p>
+        </div>
+        <div>
+          <div class="footer-title">Tools</div>
+          <a href="../tools/webp-converter.html">Bulk WebP Converter</a>
+          <a href="../tools/webp-to-jpg.html">WebP → JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+        </div>
+        <div>
+          <div class="footer-title">Legal</div>
+          <a href="../privacy-policy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </div>
+        
+    </footer>
+
+    <script src="../app.js"></script>
+  </body>
+</html>
+
+
+
+
