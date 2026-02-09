@@ -214,15 +214,59 @@ async function convertAll() {
   renderList();
 }
 
-function downloadAll() {
-  for (const item of items) {
-    if (!item.blob || !item.url) continue;
-    const a = document.createElement("a");
-    a.href = item.url;
-    a.download = item.outputName;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+async function downloadAll() {
+  const readyItems = items.filter((item) => item.blob);
+  if (readyItems.length === 0) return;
+
+  if (typeof JSZip !== "function") {
+    for (const item of readyItems) {
+      const a = document.createElement("a");
+      a.href = item.url;
+      a.download = item.outputName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+    return;
+  }
+
+  const originalText = downloadAllBtn ? downloadAllBtn.textContent : null;
+  if (downloadAllBtn) {
+    downloadAllBtn.textContent = "Preparing ZIP...";
+    downloadAllBtn.disabled = true;
+    downloadAllBtn.classList.add("is-loading");
+  }
+
+  const zip = new JSZip();
+  const nameCounts = new Map();
+
+  for (const item of readyItems) {
+    let name = item.outputName;
+    const count = nameCounts.get(name) || 0;
+    if (count > 0) {
+      const dot = name.lastIndexOf(".");
+      const base = dot > 0 ? name.slice(0, dot) : name;
+      const ext = dot > 0 ? name.slice(dot) : "";
+      name = `${base} (${count})${ext}`;
+    }
+    nameCounts.set(item.outputName, count + 1);
+    zip.file(name, item.blob);
+  }
+
+  const zipBlob = await zip.generateAsync({ type: "blob" });
+  const zipUrl = URL.createObjectURL(zipBlob);
+  const a = document.createElement("a");
+  a.href = zipUrl;
+  a.download = "converted-images.zip";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(zipUrl), 1000);
+
+  if (downloadAllBtn && originalText) {
+    downloadAllBtn.textContent = originalText;
+    downloadAllBtn.classList.remove("is-loading");
+    downloadAllBtn.disabled = false;
   }
 }
 
