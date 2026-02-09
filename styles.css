@@ -274,6 +274,23 @@ label {
   color: var(--muted);
 }
 
+.range-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.range-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+.range-row span {
+  min-width: 36px;
+  text-align: right;
+  color: var(--ink);
+}
+
 input[type="number"],
 select,
 textarea {
