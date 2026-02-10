@@ -60,9 +60,10 @@ a {
   font-weight: 600;
   letter-spacing: 0.02em;
   display: inline-flex;
-  gap: 2px;
+  gap: 0px;
   align-items: baseline;
   font-size: 18px;
+  text-transform: capitalize;
 }
 
 .logo .bold { font-weight: 700; }
