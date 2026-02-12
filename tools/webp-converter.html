@@ -6,16 +6,9 @@
     <title>Bulk WebP Converter for E-commerce</title>
     <meta name="description" content="Convert e-commerce product images to WebP in bulk. Local-only, no uploads." />
     <link rel="stylesheet" href="../styles.css" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4424746392677797" crossorigin="anonymous"></script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QPK5DDBC3G"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-QPK5DDBC3G');
-</script>  <meta property="og:type" content="website" />
+
+<meta property="og:type" content="website" />
 <meta property="og:title" content="Bulk WebP Converter for E-commerce" />
 <meta property="og:description" content="Convert e-commerce product images to WebP in bulk. Local-only, no uploads." />
 <meta property="og:url" content="https://www.convertimagestowebp.com/tools/webp-converter.html" />
@@ -39,29 +32,40 @@
         <a class="logo" href="../index.html"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
                                                         <nav class="nav-links">
           <a href="webp-converter.html">Bulk WebP</a>
-          <a href="webp-to-jpg.html">WebP → JPG</a>
-          <a href="heic-to-webp.html">HEIC → WebP</a>
+          <a href="webp-to-jpg.html">WebP -> JPG</a>
+                    <a href="webp-to-avif.html">WebP -> AVIF</a>
+          <a href="heic-to-webp.html">HEIC -> WebP</a>
           <a href="image-compressor.html">Image Reducer</a>
-          <a href="lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="lazyload-tester.html">Lazy-Load Tester</a>
           <a href="pagespeed-image-checker.html">PageSpeed Checker</a>
           <div class="nav-group">
-            <button class="nav-trigger" type="button">Guides ▾</button>
+            <button class="nav-trigger" type="button">Guides</button>
             <div class="nav-menu">
               <a href="../guides/what-is-webp.html">What is WebP?</a>
               <a href="../guides/webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
               <a href="../guides/webp-seo.html">WebP & SEO</a>
               <a href="../guides/webp-for-ecommerce.html">E-commerce Guide</a>
               <a href="../guides/product-image-optimization.html">Image Optimization</a>
+              <a href="../guides/webp-for-shopify.html">WebP for Shopify</a>
+              <a href="../guides/webp-for-bigcommerce.html">WebP for BigCommerce</a>
+              <a href="../guides/webp-for-magento.html">WebP for Magento</a>
+              <a href="../guides/best-webp-quality-for-products.html">Best WebP Quality</a>
+              <a href="../guides/webp-vs-avif-for-ecommerce.html">WebP vs AVIF</a>
+              <a href="../guides/how-to-convert-heic-to-webp-windows-mac.html">HEIC to WebP on Windows/Mac</a>
+              <a href="../guides/webp-vs-avif-for-woocommerce-which-is-faster.html">WebP vs AVIF for WooCommerce</a>
+              <a href="../guides/how-to-bulk-convert-jpg-to-webp-without-uploading.html">Bulk JPG to WebP without upload</a>
+              <a href="../guides/why-webp-alone-wont-fix-lcp.html">Why WebP alone won't fix LCP</a>
             </div>
           </div>
         </nav>
         <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
         <div class="mobile-menu" id="mobileMenu">
           <a href="webp-converter.html">Bulk WebP</a>
-          <a href="webp-to-jpg.html">WebP → JPG</a>
-          <a href="heic-to-webp.html">HEIC → WebP</a>
+          <a href="webp-to-jpg.html">WebP -> JPG</a>
+                    <a href="webp-to-avif.html">WebP -> AVIF</a>
+          <a href="heic-to-webp.html">HEIC -> WebP</a>
           <a href="image-compressor.html">Image Reducer</a>
-          <a href="lazyload-tester.html">Lazy‑Load Tester</a>
+          <a href="lazyload-tester.html">Lazy-Load Tester</a>
           <a href="pagespeed-image-checker.html">PageSpeed Checker</a>
           <div class="mobile-group">Guides</div>
           <a href="../guides/what-is-webp.html">What is WebP?</a>
@@ -117,6 +121,41 @@
         </section>
       </section>
 
+      <section class="section" id="compareSection" hidden>
+        <h2>Before / After Preview</h2>
+        <p class="muted">Drag the center line to compare details and quality.</p>
+        <div class="compare-toolbar">
+          <label for="compareSelect">Preview image</label>
+          <select id="compareSelect" disabled>
+            <option value="">Convert images to enable preview</option>
+          </select>
+        </div>
+        <div class="compare-shell" role="group" aria-label="Before and after image comparison">
+          <img id="beforePreview" class="compare-base" src="" alt="Original preview" />
+          <div class="compare-overlay" id="compareAfterWrap">
+            <img id="afterPreview" src="" alt="Converted preview" />
+          </div>
+          <div class="compare-tags" aria-hidden="true">
+            <span class="compare-tag compare-tag-before">Before</span>
+            <span class="compare-tag compare-tag-after">After</span>
+          </div>
+          <div class="compare-handle" id="compareHandle" aria-hidden="true">
+            <span class="compare-grip">DRAG</span>
+          </div>
+          <input
+            id="compareRange"
+            class="compare-range"
+            type="range"
+            min="0"
+            max="100"
+            value="50"
+            aria-label="Compare before and after"
+          />
+        </div>
+        <p class="compare-help">Tip: drag left and right to inspect edges, textures, and fine details.</p>
+        <p class="compare-meta" id="compareMeta"></p>
+      </section>
+
       <section class="section">
         <h2>E-commerce tips</h2>
         <div class="article">
@@ -139,7 +178,7 @@
       <div class="container footer-grid">
         <div>
           <div class="logo"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></div>
-          <p class="muted">A focused performance micro‑platform for e-commerce owners.</p>
+          <p class="muted">A focused performance micro-platform for e-commerce owners.</p>
           <p class="muted">© 2026 <a href="https://www.convertimagestowebp.com/">convertimagestowebp.com</a></p>
         </div>
         <div>
@@ -160,10 +199,15 @@
         
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-    <script src="../app.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script defer src="../app.js"></script>
   </body>
 </html>
+
+
+
+
+
 
 
 

@@ -11,6 +11,20 @@ const qualityValue = document.getElementById("qualityValue");
 const maxWidthInput = document.getElementById("maxWidth");
 const outputFormat = document.getElementById("outputFormat");
 const analyzeBtn = document.getElementById("analyzeBtn");
+const compareSection = document.getElementById("compareSection");
+const beforePreview = document.getElementById("beforePreview");
+const afterPreview = document.getElementById("afterPreview");
+const compareAfterWrap = document.getElementById("compareAfterWrap");
+const compareHandle = document.getElementById("compareHandle");
+const compareRange = document.getElementById("compareRange");
+const compareMeta = document.getElementById("compareMeta");
+const compareSelect = document.getElementById("compareSelect");
+
+const ADSENSE_CLIENT = "ca-pub-4424746392677797";
+const GA_MEASUREMENT_ID = "G-QPK5DDBC3G";
+let thirdPartyBooted = false;
+let analyticsLoaded = false;
+let adsenseLoaded = false;
 
 const lazySummary = document.getElementById("lazySummary");
 const lazyResults = document.getElementById("lazyResults");
@@ -21,6 +35,162 @@ const psTable = document.getElementById("psTable");
 
 const allowedTypes = new Set(["image/png", "image/jpeg", "image/webp", "image/heic", "image/heif"]);
 let items = [];
+let itemSeq = 0;
+
+function loadExternalScript(src, attributes = {}) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.async = true;
+    Object.entries(attributes).forEach(([key, value]) => {
+      script.setAttribute(key, value);
+    });
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
+
+function pageHasVisibleAdSlots() {
+  const slots = document.querySelectorAll("ins.adsbygoogle");
+  if (slots.length === 0) return false;
+  return Array.from(slots).some((slot) => {
+    const wrap = slot.closest(".ad-wrap");
+    if (!wrap) return true;
+    return getComputedStyle(wrap).display !== "none";
+  });
+}
+
+async function initAnalytics() {
+  if (analyticsLoaded) return;
+  analyticsLoaded = true;
+  try {
+    await loadExternalScript(
+      `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
+    );
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_MEASUREMENT_ID);
+  } catch (_) {
+    // Ignore third-party load failures to avoid blocking core app behavior.
+  }
+}
+
+async function initAdsense() {
+  if (adsenseLoaded || !pageHasVisibleAdSlots()) return;
+  adsenseLoaded = true;
+  try {
+    await loadExternalScript(
+      `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`,
+      { crossorigin: "anonymous" }
+    );
+    const slots = document.querySelectorAll("ins.adsbygoogle");
+    slots.forEach((slot) => {
+      if (slot.dataset.adActivated === "true") return;
+      slot.dataset.adActivated = "true";
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    });
+  } catch (_) {
+    // Ignore third-party load failures to avoid blocking core app behavior.
+  }
+}
+
+function bootThirdParty() {
+  if (thirdPartyBooted) return;
+  thirdPartyBooted = true;
+  initAnalytics();
+  initAdsense();
+}
+
+function scheduleThirdPartyBoot() {
+  const onFirstInteraction = () => {
+    bootThirdParty();
+    window.removeEventListener("pointerdown", onFirstInteraction, true);
+    window.removeEventListener("keydown", onFirstInteraction, true);
+    window.removeEventListener("scroll", onFirstInteraction, true);
+    window.removeEventListener("touchstart", onFirstInteraction, true);
+  };
+
+  window.addEventListener("pointerdown", onFirstInteraction, true);
+  window.addEventListener("keydown", onFirstInteraction, true);
+  window.addEventListener("scroll", onFirstInteraction, true);
+  window.addEventListener("touchstart", onFirstInteraction, true);
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(() => bootThirdParty(), { timeout: 4000 });
+  } else {
+    window.setTimeout(() => bootThirdParty(), 4000);
+  }
+}
+
+function applyComparePosition(value) {
+  if (!compareAfterWrap || !compareHandle) return;
+  const clamped = Math.max(0, Math.min(100, Number(value) || 50));
+  compareAfterWrap.style.clipPath = `inset(0 ${100 - clamped}% 0 0)`;
+  compareHandle.style.left = `${clamped}%`;
+}
+
+function updateComparePreview(item) {
+  if (!compareSection || !beforePreview || !afterPreview || !compareRange) return;
+  if (!item?.beforeUrl || !item?.url || !item?.blob || item.error) {
+    compareSection.hidden = true;
+    if (compareMeta) compareMeta.textContent = "";
+    return;
+  }
+  beforePreview.src = item.beforeUrl;
+  afterPreview.src = item.url;
+  if (compareMeta) {
+    const beforeSize = item.file?.size || 0;
+    const afterSize = item.blob?.size || 0;
+    if (beforeSize > 0) {
+      const diff = beforeSize - afterSize;
+      const pct = Math.round((Math.abs(diff) / beforeSize) * 100);
+      const direction = diff >= 0 ? "smaller" : "larger";
+      compareMeta.textContent = `Original: ${bytesToSize(beforeSize)} | Converted: ${bytesToSize(afterSize)} (${pct}% ${direction})`;
+    } else {
+      compareMeta.textContent = `Converted size: ${bytesToSize(afterSize)}`;
+    }
+  }
+  compareSection.hidden = false;
+  applyComparePosition(compareRange.value);
+}
+
+function refreshCompareFromItems() {
+  const readyItems = items.filter((item) => item.blob && !item.error);
+  if (compareSelect) {
+    const selectedId = compareSelect.value;
+    compareSelect.innerHTML = "";
+
+    if (readyItems.length === 0) {
+      const option = document.createElement("option");
+      option.value = "";
+      option.textContent = "Convert images to enable preview";
+      compareSelect.appendChild(option);
+      compareSelect.disabled = true;
+      updateComparePreview(null);
+      return;
+    }
+
+    for (const item of readyItems) {
+      const option = document.createElement("option");
+      option.value = item.id;
+      option.textContent = item.file.name;
+      compareSelect.appendChild(option);
+    }
+
+    compareSelect.disabled = false;
+    const selectedItem =
+      readyItems.find((item) => item.id === selectedId) || readyItems[0];
+    compareSelect.value = selectedItem.id;
+    updateComparePreview(selectedItem);
+    return;
+  }
+
+  updateComparePreview(readyItems[0] || null);
+}
 
 function setQualityLabel() {
   if (qualityInput && qualityValue) {
@@ -33,6 +203,23 @@ function bytesToSize(bytes) {
   const units = ["B", "KB", "MB", "GB"];
   const i = Math.floor(Math.log(bytes) / Math.log(1024));
   return `${(bytes / Math.pow(1024, i)).toFixed(1)} ${units[i]}`;
+}
+
+function inferImageMime(file) {
+  if (file.type && file.type.startsWith("image/")) return file.type;
+  const match = file.name.match(/\.([^.]+)$/);
+  if (!match) return "image/jpeg";
+  const ext = match[1].toLowerCase();
+  if (ext === "png") return "image/png";
+  if (ext === "webp") return "image/webp";
+  if (ext === "jpg" || ext === "jpeg") return "image/jpeg";
+  return "image/jpeg";
+}
+
+function inferImageExtension(mime) {
+  if (mime === "image/png") return "png";
+  if (mime === "image/webp") return "webp";
+  return "jpg";
 }
 
 function renderList() {
@@ -83,6 +270,7 @@ function renderList() {
 }
 
 function addFiles(fileList) {
+  let added = false;
   for (const file of fileList) {
     const isHeic =
       /\.heic$|\.heif$/i.test(file.name) ||
@@ -99,20 +287,28 @@ function addFiles(fileList) {
     if (tool === "heic-to-webp" && !isHeic) continue;
 
     items.push({
+      id: `item-${++itemSeq}`,
       file,
       blob: null,
       url: null,
-      outputName: getOutputName(file.name),
+      beforeUrl: URL.createObjectURL(file),
+      outputName: getOutputName(file),
       error: null,
     });
+    added = true;
   }
+  if (added) updateComparePreview(null);
   renderList();
 }
 
-function getOutputName(name) {
+function getOutputName(file) {
+  const name = file.name;
   if (tool === "webp-to-jpg") return name.replace(/\.[^.]+$/, "") + ".jpg";
-  if (tool === "image-compressor" && outputFormat?.value === "jpg") {
-    return name.replace(/\.[^.]+$/, "") + ".jpg";
+  if (tool === "webp-to-avif") return name.replace(/\.[^.]+$/, "") + ".avif";
+  if (tool === "image-compressor") {
+    if (/\.[^.]+$/.test(name)) return name;
+    const ext = inferImageExtension(inferImageMime(file));
+    return `${name}.${ext}`;
   }
   return name.replace(/\.[^.]+$/, "") + ".webp";
 }
@@ -120,9 +316,12 @@ function getOutputName(name) {
 function clearAll() {
   for (const item of items) {
     if (item.url) URL.revokeObjectURL(item.url);
+    if (item.beforeUrl) URL.revokeObjectURL(item.beforeUrl);
   }
   items = [];
   if (fileInput) fileInput.value = "";
+  updateComparePreview(null);
+  refreshCompareFromItems();
   renderList();
 }
 
@@ -163,8 +362,12 @@ async function convertFile(item, quality) {
   ctx.drawImage(imageBitmap, 0, 0, canvas.width, canvas.height);
 
   let mime = "image/webp";
-  if (tool === "webp-to-jpg" || (tool === "image-compressor" && outputFormat?.value === "jpg")) {
+  if (tool === "webp-to-jpg") {
     mime = "image/jpeg";
+  } else if (tool === "webp-to-avif") {
+    mime = "image/avif";
+  } else if (tool === "image-compressor") {
+    mime = inferImageMime(item.file);
   }
 
   const blob = await new Promise((resolve) =>
@@ -193,6 +396,7 @@ async function convertAll() {
     item.url = null;
     item.blob = null;
   }
+  updateComparePreview(null);
   renderList();
 
   for (const item of items) {
@@ -200,7 +404,7 @@ async function convertAll() {
       const blob = await convertFile(item, quality);
       item.blob = blob;
       item.url = URL.createObjectURL(blob);
-      item.outputName = getOutputName(item.file.name);
+      item.outputName = getOutputName(item.file);
     } catch (err) {
       item.error = err.message || "Failed";
     }
@@ -211,6 +415,7 @@ async function convertAll() {
     convertBtn.textContent = originalText;
     convertBtn.classList.remove("is-loading");
   }
+  refreshCompareFromItems();
   renderList();
 }
 
@@ -298,6 +503,20 @@ function initFileTool() {
         addFiles(e.dataTransfer.files);
       }
     });
+  }
+
+  if (compareRange) {
+    compareRange.addEventListener("input", (event) => {
+      applyComparePosition(event.target.value);
+    });
+    applyComparePosition(compareRange.value);
+  }
+  if (compareSelect) {
+    compareSelect.addEventListener("change", () => {
+      const selected = items.find((item) => item.id === compareSelect.value);
+      updateComparePreview(selected || null);
+    });
+    refreshCompareFromItems();
   }
 
   setQualityLabel();
@@ -452,7 +671,7 @@ function initPageSpeedChecker() {
   });
 }
 
-if (["webp-converter", "webp-to-jpg", "image-compressor", "heic-to-webp"].includes(tool)) {
+if (["webp-converter", "webp-to-jpg", "webp-to-avif", "image-compressor", "heic-to-webp"].includes(tool)) {
   initFileTool();
 }
 
@@ -484,4 +703,6 @@ document.addEventListener("click", (event) => {
     toggle.setAttribute("aria-expanded", "false");
   });
 });
+
+scheduleThirdPartyBoot();
 

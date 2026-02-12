@@ -16,6 +16,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.convertimagestowebp.com/tools/webp-to-avif.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.convertimagestowebp.com/tools/heic-to-webp.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -57,6 +62,51 @@
   </url>
   <url>
     <loc>https://www.convertimagestowebp.com/guides/product-image-optimization.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.convertimagestowebp.com/guides/webp-for-shopify.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.convertimagestowebp.com/guides/webp-for-bigcommerce.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.convertimagestowebp.com/guides/webp-for-magento.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.convertimagestowebp.com/guides/best-webp-quality-for-products.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.convertimagestowebp.com/guides/webp-vs-avif-for-ecommerce.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.convertimagestowebp.com/guides/how-to-convert-heic-to-webp-windows-mac.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.convertimagestowebp.com/guides/webp-vs-avif-for-woocommerce-which-is-faster.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.convertimagestowebp.com/guides/how-to-bulk-convert-jpg-to-webp-without-uploading.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.convertimagestowebp.com/guides/why-webp-alone-wont-fix-lcp.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
