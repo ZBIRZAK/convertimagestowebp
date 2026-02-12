@@ -1,6 +1,6 @@
-﻿# WebP Commerce Toolkit (Multisite Static)
+# WebP Commerce Toolkit (Multisite Static)
 
-An e-commerce focused image performance micro‑platform.
+An e-commerce focused image performance micro-platform.
 
 ## Pages
 - `index.html`
@@ -13,9 +13,11 @@ An e-commerce focused image performance micro‑platform.
 - `guides/webp-vs-jpg-png-2026.html`
 - `guides/webp-seo.html`
 - `guides/webp-for-wordpress.html`
+- `guides/wordpress-webp-plugin.html`
 - `guides/webp-for-woocommerce.html`
 - `guides/webp-for-ecommerce.html`
 - `guides/product-image-optimization.html`
+- `wordpress-plugin/webp-migrator/`
 
 ## Deploy (multisite)
 Deploy the entire folder to any static host. Repeat for each site/domain. No backend required.
@@ -30,3 +32,4 @@ Then open `http://localhost:8080`.
 ## Notes
 - Conversion uses the browser WebP encoder (`canvas.toBlob`).
 - Files never leave the device.
+

@@ -1,0 +1,207 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WordPress WebP Plugin Guide (WebP Migrator) | convertimagestowebp.com</title>
+    <meta name="description" content="Complete WordPress WebP plugin guide for WebP Migrator: install steps, backup and restore workflow, batch conversion, and safe rollout for media libraries." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="canonical" href="https://www.convertimagestowebp.com/guides/wordpress-webp-plugin.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="WordPress WebP Plugin Guide (WebP Migrator)" />
+    <meta property="og:description" content="Install, configure, and run WebP Migrator safely with backup and restore steps for WordPress image optimization." />
+    <meta property="og:url" content="https://www.convertimagestowebp.com/guides/wordpress-webp-plugin.html" />
+    <meta property="og:site_name" content="convertimagestowebp.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WordPress WebP Plugin Guide (WebP Migrator)" />
+    <meta name="twitter:description" content="Install, configure, and run WebP Migrator safely with backup and restore steps for WordPress image optimization." />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"WordPress WebP Plugin Guide (WebP Migrator)","description":"Complete WordPress WebP plugin guide for WebP Migrator: install steps, backup and restore workflow, batch conversion, and safe rollout for media libraries.","author":{"@type":"Organization","name":"convertimagestowebp.com"},"publisher":{"@type":"Organization","name":"convertimagestowebp.com"},"mainEntityOfPage":"https://www.convertimagestowebp.com/guides/wordpress-webp-plugin.html"}</script>
+  </head>
+  <body>
+        <header class="site-header">
+      <div class="container nav">
+        <a class="logo" href="../index.html"><span class="bold">Convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
+        <nav class="nav-links">
+          <a href="../tools/webp-converter.html">Bulk WebP</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+          <a href="../tools/lazyload-tester.html">Lazy-Load Tester</a>
+          <a href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="nav-group">
+            <button class="nav-trigger" type="button">Converters</button>
+            <div class="nav-menu">
+              <a href="../tools/webp-to-jpg.html">WebP -> JPG</a>
+              <a href="../tools/webp-to-avif.html">WebP -> AVIF</a>
+              <a href="../tools/heic-to-webp.html">HEIC -> WebP</a>
+            </div>
+          </div>
+          <div class="nav-group">
+            <button class="nav-trigger" type="button">Guides</button>
+            <div class="nav-menu">
+              <a href="what-is-webp.html">What is WebP?</a>
+              <a href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+              <a href="webp-seo.html">WebP & SEO</a>
+              <a href="webp-for-ecommerce.html">WebP for E-commerce</a>
+              <a href="product-image-optimization.html">Product Image Optimization</a>
+              <a href="webp-for-shopify.html">WebP for Shopify</a>
+              <a href="webp-for-bigcommerce.html">WebP for BigCommerce</a>
+              <a href="webp-for-magento.html">WebP for Magento</a>
+              <a href="best-webp-quality-for-products.html">Best WebP Quality</a>
+              <a href="webp-vs-avif-for-ecommerce.html">WebP vs AVIF</a>
+              <a href="how-to-convert-heic-to-webp-windows-mac.html">HEIC to WebP on Windows/Mac</a>
+              <a href="webp-vs-avif-for-woocommerce-which-is-faster.html">WebP vs AVIF for WooCommerce</a>
+              <a href="how-to-bulk-convert-jpg-to-webp-without-uploading.html">Bulk JPG to WebP (Local)</a>
+              <a href="why-webp-alone-wont-fix-lcp.html">Why WebP Alone Won't Fix LCP</a>
+              <a href="webp-for-wordpress.html">WebP for WordPress</a>
+              <a href="webp-for-woocommerce.html">WebP for WooCommerce</a>
+            </div>
+          </div>
+          <a class="nav-cta" href="wordpress-webp-plugin.html">Download WP Plugin</a>
+        </nav>
+        <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+        <div class="mobile-menu" id="mobileMenu">
+          <a href="../tools/webp-converter.html">Bulk WebP</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+          <a href="../tools/lazyload-tester.html">Lazy-Load Tester</a>
+          <a href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+          <div class="mobile-group">Converters</div>
+          <a href="../tools/webp-to-jpg.html">WebP -> JPG</a>
+          <a href="../tools/webp-to-avif.html">WebP -> AVIF</a>
+          <a href="../tools/heic-to-webp.html">HEIC -> WebP</a>
+          <div class="mobile-group">Guides</div>
+          <a href="what-is-webp.html">What is WebP?</a>
+          <a href="webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
+          <a href="webp-seo.html">WebP & SEO</a>
+          <a href="webp-for-ecommerce.html">WebP for E-commerce</a>
+          <a href="product-image-optimization.html">Product Image Optimization</a>
+          <a href="webp-for-shopify.html">WebP for Shopify</a>
+          <a href="webp-for-bigcommerce.html">WebP for BigCommerce</a>
+          <a href="webp-for-magento.html">WebP for Magento</a>
+          <a href="best-webp-quality-for-products.html">Best WebP Quality</a>
+          <a href="webp-vs-avif-for-ecommerce.html">WebP vs AVIF</a>
+          <a href="how-to-convert-heic-to-webp-windows-mac.html">HEIC to WebP on Windows/Mac</a>
+          <a href="webp-vs-avif-for-woocommerce-which-is-faster.html">WebP vs AVIF for WooCommerce</a>
+          <a href="how-to-bulk-convert-jpg-to-webp-without-uploading.html">Bulk JPG to WebP (Local)</a>
+          <a href="why-webp-alone-wont-fix-lcp.html">Why WebP Alone Won't Fix LCP</a>
+          <a href="webp-for-wordpress.html">WebP for WordPress</a>
+          <a href="webp-for-woocommerce.html">WebP for WooCommerce</a>
+          <a class="mobile-cta" href="wordpress-webp-plugin.html">Download WP Plugin</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-header">
+        <p class="eyebrow">WordPress Plugin</p>
+        <h1>WebP Migrator</h1>
+        <p class="sub">A practical guide to convert WordPress images to WebP with backup, restore, and dashboard control.</p>
+      </section>
+
+      <article class="article">
+        <h2>What WebP Migrator does</h2>
+        <p>WebP Migrator creates WebP versions of your media library JPG and PNG files, keeps originals, and lets you manage the process in batches from wp-admin.</p>
+
+        <h2>Dashboard controls</h2>
+        <p>Inside WordPress admin, you get controls for:</p>
+        <ul>
+          <li>Media scan: convertible, converted, and pending counts.</li>
+          <li>Settings: quality and batch size.</li>
+          <li>Conversion: process images safely in batches.</li>
+          <li>Restore: roll back to original files from backup.</li>
+        </ul>
+
+        <h2>Backup and restore</h2>
+        <p>Before conversion, originals are backed up to <code>wp-content/uploads/wim-backups/...</code>. Restore puts source files back and removes generated WebP copies.</p>
+
+        <h2>Safe migration flow</h2>
+        <ol>
+          <li>Run on staging first.</li>
+          <li>Scan library and verify totals.</li>
+          <li>Start with small batches.</li>
+          <li>Check product, category, and blog pages.</li>
+          <li>Increase batch size only after stable results.</li>
+        </ol>
+
+        <h2>Where the plugin files are in this project</h2>
+        <p><code>img-to-webp/wordpress-plugin/webp-migrator/</code></p>
+
+        <h2>Download plugin ZIP</h2>
+        <p>Download the ready package and upload it directly in WordPress:</p>
+        <p><a class="btn primary" href="../downloads/webp-migrator-1.2.0.zip" download>Download WebP Migrator 1.2.0 (.zip)</a></p>
+
+        <h2>How to install</h2>
+        <ol>
+          <li>Download <code>webp-migrator-1.2.0.zip</code> from the link above.</li>
+          <li>In WordPress admin, go to <strong>Plugins > Add New Plugin > Upload Plugin</strong>.</li>
+          <li>Select <code>webp-migrator-1.2.0.zip</code> and click <strong>Install Now</strong>.</li>
+          <li>Click <strong>Activate Plugin</strong>.</li>
+          <li>Open <strong>WebP Migrator</strong> from the left admin menu.</li>
+          <li>Run <strong>Scan library</strong>, then start <strong>Convert pending images</strong> in small batches.</li>
+          <li>If needed, use <strong>Restore originals</strong> to roll back from backups.</li>
+        </ol>
+
+        <h2>Website and tools</h2>
+        <p>Use our website for conversion tools, guides, and optimization workflows:</p>
+        <p><a href="https://www.convertimagestowebp.com/" target="_blank" rel="noopener noreferrer">https://www.convertimagestowebp.com/</a></p>
+
+        <p class="note">Use staging first. Confirm theme/plugin image compatibility before production rollout.</p>
+
+        <h2>Related guides</h2>
+        <div class="link-grid">
+          <a class="link-card" href="webp-for-wordpress.html">WebP for WordPress</a>
+          <a class="link-card" href="webp-for-woocommerce.html">WebP for WooCommerce</a>
+          <a class="link-card" href="webp-seo.html">Does WebP improve SEO?</a>
+          <a class="link-card" href="why-webp-alone-wont-fix-lcp.html">Why WebP Alone Won't Fix LCP</a>
+          <a class="link-card" href="best-webp-quality-for-products.html">Best WebP Quality Settings</a>
+          <a class="link-card" href="product-image-optimization.html">Product Image Optimization</a>
+        </div>
+
+        <h2>Try the tools</h2>
+        <div class="link-grid">
+          <a class="link-card" href="../tools/webp-converter.html">Bulk WebP Converter</a>
+          <a class="link-card" href="../tools/image-compressor.html">Image Reducer</a>
+          <a class="link-card" href="../tools/webp-to-jpg.html">WebP -> JPG</a>
+          <a class="link-card" href="../tools/webp-to-avif.html">WebP -> AVIF</a>
+          <a class="link-card" href="../tools/heic-to-webp.html">HEIC -> WebP</a>
+          <a class="link-card" href="../tools/pagespeed-image-checker.html">PageSpeed Checker</a>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="logo"><span class="bold">convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></div>
+          <p class="muted">A focused performance micro-platform for e-commerce owners.</p>
+        </div>
+        <div>
+          <div class="footer-title">Tools</div>
+          <a href="../tools/webp-converter.html">Bulk WebP Converter</a>
+          <a href="../tools/webp-to-jpg.html">WebP -> JPG</a>
+          <a href="../tools/image-compressor.html">Image Reducer</a>
+        </div>
+        <div>
+          <div class="footer-title">Guides</div>
+          <a href="webp-for-ecommerce.html">E-commerce Guide</a>
+          <a href="webp-for-wordpress.html">WebP for WordPress</a>
+          <a href="wordpress-webp-plugin.html">WordPress WebP Plugin</a>
+        </div>
+        <div>
+          <div class="footer-title">Legal</div>
+          <a href="../privacy-policy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="../app.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+

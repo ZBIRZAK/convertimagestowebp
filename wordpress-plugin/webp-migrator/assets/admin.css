@@ -1,0 +1,109 @@
+.wim-wrap {
+  max-width: 1120px;
+}
+
+.wim-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(340px, 1fr) minmax(360px, 1fr);
+}
+
+.wim-card {
+  background: #fff;
+  border: 1px solid #dcdcde;
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.wim-card h2 {
+  margin-top: 0;
+}
+
+.wim-stats {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 16px 0;
+}
+
+.wim-stats strong {
+  display: block;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.wim-stats span {
+  color: #646970;
+  font-size: 12px;
+}
+
+.wim-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.wim-log {
+  margin-top: 14px;
+  max-height: 220px;
+  overflow: auto;
+  border: 1px solid #dcdcde;
+  border-radius: 8px;
+  padding: 8px;
+  background: #fcfcfc;
+}
+
+.wim-log-line {
+  margin: 0 0 6px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #f0f6fc;
+  font-size: 12px;
+}
+
+.wim-log-line.is-warning {
+  background: #fff8e5;
+}
+
+.wim-log-line.is-error {
+  background: #fbeaea;
+}
+
+.wim-log-line.is-ok {
+  background: #e9f7ef;
+}
+
+.wim-system-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(160px, 1fr));
+}
+
+.wim-system-grid div {
+  border: 1px solid #dcdcde;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fcfcfc;
+}
+
+.wim-system-grid span {
+  display: block;
+  color: #646970;
+  font-size: 12px;
+}
+
+.wim-system-grid strong {
+  display: block;
+  margin-top: 4px;
+}
+
+@media (max-width: 960px) {
+  .wim-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wim-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
