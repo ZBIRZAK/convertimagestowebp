@@ -808,6 +808,13 @@ main {
 @media (max-width: 900px) {
   .mobile-toggle { display: inline-flex; }
   .mobile-menu {
-    max-width: calc(100vw - 24px);
+    position: fixed;
+    top: 72px;
+    right: 12px;
+    left: 12px;
+    min-width: 0;
+    max-width: none;
+    max-height: calc(100vh - 84px);
+    touch-action: pan-y;
   }
 }
