@@ -140,6 +140,36 @@
           <li>If needed, use <strong>Restore originals</strong> to roll back from backups.</li>
         </ol>
 
+        <h2>Recommended settings for production</h2>
+        <p>For most WordPress stores and blogs, a quality range between 80 and 86 is a practical starting point. This usually gives a good file-size reduction without visible quality loss on product photos and article images. If your site uses many screenshots or graphics with hard edges, test a slightly higher value for those categories. The right setting is not universal. It depends on image type, theme layout, and how much zoom users need.</p>
+        <p>Batch size should match your server capacity. Shared hosting environments should start low, often between 10 and 30 images per run. VPS or managed hosting can usually handle larger batches. Increasing batch size too early can cause timeouts and incomplete conversion runs. Start small, validate server behavior, then scale carefully.</p>
+
+        <h2>Pre-launch checklist before converting the full library</h2>
+        <p>Do not run full-library conversion as the first action. Use a controlled pre-launch checklist. First, back up files and database. Second, scan your media library and confirm counts look correct. Third, convert a small pilot set and test the pages where those images appear. Fourth, verify no theme components, sliders, or page builders fail to render converted files. Fifth, monitor logs for errors during conversion jobs.</p>
+        <p>A short pilot avoids high-impact issues later. Many sites pass local tests but fail on production because of cache layers, CDN rules, or plugin conflicts. A 20 to 50 image pilot is enough to detect most integration problems before they affect the full site.</p>
+
+        <h2>How to test image quality correctly</h2>
+        <p>Visual QA should be methodical. Review converted images at normal view size and at 100 percent zoom. Check details that matter for users: product texture, edge sharpness, text readability inside images, and gradient smoothness. If artifacts appear, increase quality in small increments and retest only that category. Avoid global quality changes when problems are limited to a subset of files.</p>
+        <p>Test on mobile and desktop. Mobile screens hide some artifacts, while desktop zoom can expose them. If your workflow supports variants (thumbnail, medium, large), validate each one because compression issues can differ by size variant.</p>
+
+        <h2>Performance validation after conversion</h2>
+        <p>After conversion, verify outcomes with both technical and business metrics. Technical checks include page weight, Largest Contentful Paint, and image request size on key templates. Business checks include bounce rate, add-to-cart rate, and conversion rate on pages where converted images were deployed. The objective is not only smaller files, but better user outcomes.</p>
+        <p>Measure before and after on the same page set to avoid noise. Use a fixed sample of key URLs: homepage, top categories, top products, and two or three content pages. This gives a repeatable baseline for monthly audits.</p>
+
+        <h2>Troubleshooting common issues</h2>
+        <p><strong>Images do not change size enough:</strong> most often this is a dimension issue, not format failure. Resize oversized originals before conversion.</p>
+        <p><strong>Some pages show old images:</strong> clear plugin cache, CDN cache, and browser cache. Check if stale derivatives are still referenced by theme markup.</p>
+        <p><strong>Conversion stops midway:</strong> lower batch size and retry. On constrained hosting, schedule smaller conversion windows.</p>
+        <p><strong>Visual quality drops on selected images:</strong> reprocess that subset with a higher quality value and keep category-specific presets.</p>
+
+        <h2>Safe rollback strategy</h2>
+        <p>Rollback must be treated as a standard operating step, not an emergency option. Keep original backups and document restore steps before launch. If quality or compatibility issues appear after rollout, revert quickly, then re-run conversion with adjusted settings. A prepared rollback plan reduces downtime and protects SEO and user trust.</p>
+        <p>For large sites, use staged rollout by section. Convert and release a subset, validate metrics for 24 to 48 hours, then continue. This approach is safer than full-library conversion in a single operation.</p>
+
+        <h2>Long-term maintenance workflow</h2>
+        <p>Image optimization is not a one-time project. New uploads happen continuously, and quality standards drift over time if there is no process. Define a simple recurring workflow: monthly media scan, conversion of new files, visual spot checks on high-traffic pages, and cache validation. Keep this documented so any editor or developer can follow it without guesswork.</p>
+        <p>When teams follow a repeatable process, site performance remains stable and regression risk is lower. The plugin is most valuable when used as part of this operational routine rather than a one-off migration.</p>
+
         <h2>Website and tools</h2>
         <p>Use our website for conversion tools, guides, and optimization workflows:</p>
         <p><a href="https://www.convertimagestowebp.com/" target="_blank" rel="noopener noreferrer">https://www.convertimagestowebp.com/</a></p>
@@ -198,6 +228,7 @@
     <script defer src="../app.js"></script>
   </body>
 </html>
+
 
 
 
