@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Image Size Reducer for E-commerce</title>
-    <meta name="description" content="Reduce product image size with smart resizing and compression targets." />
+    <title>Bulk JPEG to WebP Converter for E-commerce</title>
+    <meta name="description" content="Convert JPEG product images to WebP in bulk. Local-only, no uploads." />
     <link rel="stylesheet" href="../styles.css" />
 
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Image Size Reducer for E-commerce" />
-<meta property="og:description" content="Reduce product image size with smart resizing and compression targets." />
-<meta property="og:url" content="https://www.convertimagestowebp.com/tools/image-compressor.html" />
+<meta property="og:title" content="Bulk JPEG to WebP Converter for E-commerce" />
+<meta property="og:description" content="Convert JPEG product images to WebP in bulk. Local-only, no uploads." />
+<meta property="og:url" content="https://www.convertimagestowebp.com/tools/bulk-jpeg-to-webp.html" />
 <meta property="og:site_name" content="convertimagestowebp.com" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Image Size Reducer for E-commerce" />
-<meta name="twitter:description" content="Reduce product image size with smart resizing and compression targets." /><link rel="canonical" href="https://www.convertimagestowebp.com/tools/image-compressor.html" />
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Image Size Reducer for E-commerce", "url": "https://www.convertimagestowebp.com/tools/image-compressor.html", "applicationCategory": "Multimedia", "operatingSystem": "All"}</script>
+<meta name="twitter:title" content="Bulk JPEG to WebP Converter for E-commerce" />
+<meta name="twitter:description" content="Convert JPEG product images to WebP in bulk. Local-only, no uploads." /><link rel="canonical" href="https://www.convertimagestowebp.com/tools/bulk-jpeg-to-webp.html" />
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Bulk JPEG to WebP Converter for E-commerce", "url": "https://www.convertimagestowebp.com/tools/bulk-jpeg-to-webp.html", "applicationCategory": "Multimedia", "operatingSystem": "All"}</script>
 </head>
-  <body data-tool="image-compressor">
+  <body data-tool="bulk-jpeg-to-webp">
     <header class="site-header">
       <div class="container nav">
         <a class="logo" href="../index.html"><span class="bold">convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
@@ -101,36 +101,32 @@
     <main class="container">
       <section class="page-header">
         <p class="eyebrow">Tool</p>
-        <h1>Image Size Reducer</h1>
-        <p class="sub">Resize and compress product images for faster pages.</p>
+        <h1>Bulk JPEG to WebP Converter</h1>
+        <p class="sub">Convert .jpeg files to WebP in one batch.</p>
       </section>
 
       <section class="tool-shell">
-        <div class="form-grid">
-          <label>
-            Max width (px)
-            <input id="maxWidth" type="number" min="320" max="4000" value="2000" />
-          </label>
+        <header class="controls">
           <label>
             Quality
             <div class="range-row">
-              <input id="quality" type="range" min="50" max="100" value="85" />
+              <input id="quality" type="range" min="0" max="100" value="85" />
               <span id="qualityValue">85</span>
             </div>
           </label>
           <button id="clearBtn" class="ghost">Clear</button>
-        </div>
+        </header>
 
         <section class="drop" id="dropZone">
-          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/jpg,image/webp" multiple />
+          <input id="fileInput" type="file" accept="image/jpeg,.jpeg" multiple />
           <div class="drop-inner">
-            <div class="drop-title">Drop product images here</div>
-            <div class="drop-sub">Resize and compress in one pass</div>
+            <div class="drop-title">Drop JPEG images here</div>
+            <div class="drop-sub">or click to choose files</div>
           </div>
         </section>
 
         <section class="actions">
-          <button id="convertBtn" class="primary" disabled>Compress</button>
+          <button id="convertBtn" class="primary" disabled>Convert to WebP</button>
           <button id="downloadAllBtn" class="ghost" disabled>Download ZIP</button>
         </section>
 
@@ -181,24 +177,11 @@
       </section>
 
       <section class="section">
+        <h2>E-commerce tips</h2>
         <div class="article">
-          <h2>Targets</h2>
-          <p>Main product images: 160-350 KB. Thumbnails: under 80 KB. For detailed products, accept 300-450 KB but avoid larger files.</p>
+          <p>JPEG files from media libraries can be converted in controlled batches for stable quality and smaller weight.</p>
+          <p class="note">If you change image sizes in your store, regenerate thumbnails so your WebP versions match.</p>
         </div>
-      </section>
-      <section class="ad-wrap" aria-label="Advertisement">
-        <p class="ad-label">Advertisement</p>
-        <ins
-          class="adsbygoogle ad-slot"
-          style="display:block"
-          data-ad-client="ca-pub-4424746392677797"
-          data-ad-slot="1122334455"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
       </section>
       <section class="section">
         <h2>Guides to learn more</h2>
@@ -239,6 +222,7 @@
     <script defer src="../app.js"></script>
   </body>
 </html>
+
 
 
 

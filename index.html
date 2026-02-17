@@ -22,8 +22,15 @@
     <header class="site-header">
       <div class="container nav">
         <a class="logo" href="index.html"><span class="bold">convert</span><span class="light">images</span><span class="bold">to</span><span class="light">webp</span></a>
-                        <nav class="nav-links">
-          <a href="tools/webp-converter.html">Bulk WebP</a>
+        <nav class="nav-links">
+          <div class="nav-group">
+            <button class="nav-trigger" type="button">Bulk WebP</button>
+            <div class="nav-menu">
+              <a href="tools/bulk-jpg-to-webp.html">Bulk JPG -> WebP</a>
+              <a href="tools/bulk-jpeg-to-webp.html">Bulk JPEG -> WebP</a>
+              <a href="tools/bulk-png-to-webp.html">Bulk PNG -> WebP</a>
+              </div>
+          </div>
           <a href="tools/image-compressor.html">Image Reducer</a>
           <a href="tools/lazyload-tester.html">Lazy-Load Tester</a>
           <a href="tools/pagespeed-image-checker.html">PageSpeed Checker</a>
@@ -32,8 +39,7 @@
             <div class="nav-menu">
               <a href="tools/webp-to-jpg.html">WebP -> JPG</a>
               <a href="tools/webp-to-avif.html">WebP -> AVIF</a>
-              <a href="tools/heic-to-webp.html">HEIC -> WebP</a>
-            </div>
+              </div>
           </div>
           <div class="nav-group">
             <button class="nav-trigger" type="button">Guides</button>
@@ -59,15 +65,17 @@
           <a class="nav-cta" href="guides/wordpress-webp-plugin.html">Download WP Plugin</a>
         </nav>
         <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
-                <div class="mobile-menu" id="mobileMenu">
-          <a href="tools/webp-converter.html">Bulk WebP</a>
-          <a href="tools/image-compressor.html">Image Reducer</a>
+        <div class="mobile-menu" id="mobileMenu">
+          <div class="mobile-group">Bulk WebP</div>
+          <a href="tools/bulk-jpg-to-webp.html">Bulk JPG -> WebP</a>
+          <a href="tools/bulk-jpeg-to-webp.html">Bulk JPEG -> WebP</a>
+          <a href="tools/bulk-png-to-webp.html">Bulk PNG -> WebP</a>
+              <a href="tools/image-compressor.html">Image Reducer</a>
           <a href="tools/lazyload-tester.html">Lazy-Load Tester</a>
           <a href="tools/pagespeed-image-checker.html">PageSpeed Checker</a>
           <div class="mobile-group">Converters</div>
           <a href="tools/webp-to-jpg.html">WebP -> JPG</a>
           <a href="tools/webp-to-avif.html">WebP -> AVIF</a>
-          <a href="tools/heic-to-webp.html">HEIC -> WebP</a>
           <div class="mobile-group">Guides</div>
           <a href="guides/what-is-webp.html">What is WebP?</a>
           <a href="guides/webp-vs-jpg-png-2026.html">WebP vs JPG/PNG</a>
@@ -176,6 +184,65 @@
         </div>
       </section>
 
+      <section class="section">
+        <h2>Bulk Convert by Extension</h2>
+        <p class="sub">Choose a format below, upload files, and convert directly in this section.</p>
+        <div class="bulk-switcher" role="tablist" aria-label="Bulk WebP format switcher">
+          <button class="btn ghost bulk-switch is-active" type="button" role="tab" aria-selected="true" data-target="bulkPngPanel">Convert PNG to WebP</button>
+          <button class="btn ghost bulk-switch" type="button" role="tab" aria-selected="false" data-target="bulkJpegPanel">Convert JPEG to WebP</button>
+          <button class="btn ghost bulk-switch" type="button" role="tab" aria-selected="false" data-target="bulkJpgPanel">Convert JPG to WebP</button>
+        </div>
+
+        <div class="bulk-panel-wrap">
+          <article class="bulk-panel card" id="bulkPngPanel">
+            <h3>Convert PNG to WebP</h3>
+            <p>Best for transparent product assets, badges, and design elements. Add PNG files below and convert them instantly.</p>
+          </article>
+
+          <article class="bulk-panel card" id="bulkJpegPanel" hidden>
+            <h3>Convert JPEG to WebP</h3>
+            <p>Best for media-library exports and catalog photos saved as <code>.jpeg</code>. Convert in batches and keep quality around 80-86.</p>
+          </article>
+
+          <article class="bulk-panel card" id="bulkJpgPanel" hidden>
+            <h3>Convert JPG to WebP</h3>
+            <p>Best for camera and supplier files saved as <code>.jpg</code>. Process large image sets quickly inside this page.</p>
+          </article>
+        </div>
+
+        <div class="card home-bulk-tool" id="homeBulkTool">
+          <label for="homeBulkQuality">Quality</label>
+          <div class="range-row home-bulk-range">
+            <input id="homeBulkQuality" type="range" min="0" max="100" value="85" />
+            <span id="homeBulkQualityValue">85</span>
+          </div>
+
+          <section class="drop home-bulk-drop" id="homeBulkDropZone">
+            <input id="homeBulkFileInput" type="file" accept="image/png" multiple />
+            <div class="drop-inner">
+              <div class="drop-title" id="homeBulkDropTitle">Drop PNG images here</div>
+              <div class="drop-sub" id="homeBulkDropSub">or click to choose .png files</div>
+            </div>
+          </section>
+
+          <div class="actions">
+            <button id="homeBulkConvertBtn" class="primary" disabled>Convert to WebP</button>
+            <button id="homeBulkDownloadAllBtn" class="ghost" disabled>Download All</button>
+            <button id="homeBulkClearBtn" class="ghost" disabled>Clear</button>
+            <a class="btn ghost" id="homeBulkOpenToolLink" href="tools/bulk-png-to-webp.html">Open Dedicated Tool</a>
+          </div>
+
+          <div class="list-head home-bulk-list-head">
+            <div>File</div>
+            <div>Status</div>
+            <div>Size</div>
+            <div>Download</div>
+          </div>
+          <div class="list" id="homeBulkList"></div>
+          <p class="muted home-bulk-note" id="homeBulkNote"></p>
+        </div>
+      </section>
+
       <section class="ad-wrap" aria-label="Advertisement">
         <p class="ad-label">Advertisement</p>
         <ins
@@ -276,8 +343,7 @@
           <a href="tools/webp-converter.html">Bulk WebP Converter</a>
           <a href="tools/webp-to-jpg.html">WebP -> JPG</a>
           <a href="tools/image-compressor.html">Image Reducer</a>
-          <a href="tools/heic-to-webp.html">HEIC -> WebP</a>
-        </div>
+          </div>
         <div>
           <div class="footer-title">Guides</div>
           <a href="guides/webp-for-ecommerce.html">E-commerce Guide</a>
@@ -297,6 +363,12 @@
     <script defer src="app.js"></script>
   </body>
 </html>
+
+
+
+
+
+
 
 
 

@@ -235,6 +235,60 @@ main {
   border-color: rgba(231, 185, 107, 0.35);
 }
 
+.bulk-switcher {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0 16px;
+}
+
+.bulk-switch.is-active {
+  background: var(--accent);
+  color: #2d2110;
+  border-color: transparent;
+}
+
+.bulk-panel-wrap {
+  margin-top: 8px;
+}
+
+.bulk-panel h3 {
+  margin-top: 0;
+}
+
+.bulk-panel .btn {
+  margin-top: 8px;
+}
+
+.home-bulk-tool {
+  margin-top: 16px;
+}
+
+.home-bulk-range {
+  max-width: 360px;
+  margin-bottom: 14px;
+}
+
+.home-bulk-drop {
+  margin-top: 4px;
+}
+
+.home-bulk-drop input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.home-bulk-list-head {
+  margin-top: 4px;
+}
+
+.home-bulk-note {
+  margin: 12px 0 0;
+  min-height: 20px;
+}
+
 .site-footer {
   border-top: 1px solid rgba(246, 240, 231, 0.08);
   padding: 32px 0 50px;

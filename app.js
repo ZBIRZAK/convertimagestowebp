@@ -272,6 +272,8 @@ function renderList() {
 function addFiles(fileList) {
   let added = false;
   for (const file of fileList) {
+    const extMatch = file.name.match(/\.([^.]+)$/);
+    const ext = extMatch ? extMatch[1].toLowerCase() : "";
     const isHeic =
       /\.heic$|\.heif$/i.test(file.name) ||
       ["image/heic", "image/heif"].includes(file.type);
@@ -283,6 +285,9 @@ function addFiles(fileList) {
     }
 
     if (tool === "webp-converter" && file.type === "image/webp") continue;
+    if (tool === "bulk-jpg-to-webp" && ext !== "jpg") continue;
+    if (tool === "bulk-jpeg-to-webp" && ext !== "jpeg") continue;
+    if (tool === "bulk-png-to-webp" && file.type !== "image/png" && ext !== "png") continue;
     if (tool === "webp-to-jpg" && file.type !== "image/webp") continue;
     if (tool === "heic-to-webp" && !isHeic) continue;
 
@@ -671,7 +676,341 @@ function initPageSpeedChecker() {
   });
 }
 
-if (["webp-converter", "webp-to-jpg", "webp-to-avif", "image-compressor", "heic-to-webp"].includes(tool)) {
+function initBulkSwitcher() {
+  const switches = Array.from(document.querySelectorAll(".bulk-switch"));
+  if (switches.length === 0) return;
+
+  const panels = Array.from(document.querySelectorAll(".bulk-panel"));
+
+  const showPanel = (targetId) => {
+    for (const panel of panels) {
+      panel.hidden = panel.id !== targetId;
+    }
+    for (const btn of switches) {
+      const active = btn.dataset.target === targetId;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-selected", active ? "true" : "false");
+    }
+    document.dispatchEvent(
+      new CustomEvent("bulk-panel-change", {
+        detail: { targetId },
+      })
+    );
+  };
+
+  for (const btn of switches) {
+    btn.addEventListener("click", () => {
+      if (!btn.dataset.target) return;
+      showPanel(btn.dataset.target);
+    });
+  }
+}
+
+function initHomeBulkConverter() {
+  if (!document.getElementById("homeBulkTool")) return;
+
+  const homeBulkFileInput = document.getElementById("homeBulkFileInput");
+  const homeBulkDropZone = document.getElementById("homeBulkDropZone");
+  const homeBulkDropTitle = document.getElementById("homeBulkDropTitle");
+  const homeBulkDropSub = document.getElementById("homeBulkDropSub");
+  const homeBulkQuality = document.getElementById("homeBulkQuality");
+  const homeBulkQualityValue = document.getElementById("homeBulkQualityValue");
+  const homeBulkConvertBtn = document.getElementById("homeBulkConvertBtn");
+  const homeBulkDownloadAllBtn = document.getElementById("homeBulkDownloadAllBtn");
+  const homeBulkClearBtn = document.getElementById("homeBulkClearBtn");
+  const homeBulkOpenToolLink = document.getElementById("homeBulkOpenToolLink");
+  const homeBulkList = document.getElementById("homeBulkList");
+  const homeBulkNote = document.getElementById("homeBulkNote");
+
+  if (
+    !homeBulkFileInput ||
+    !homeBulkDropZone ||
+    !homeBulkQuality ||
+    !homeBulkQualityValue ||
+    !homeBulkConvertBtn ||
+    !homeBulkDownloadAllBtn ||
+    !homeBulkClearBtn ||
+    !homeBulkList
+  ) {
+    return;
+  }
+
+  const modeByPanel = {
+    bulkPngPanel: {
+      ext: "png",
+      accept: "image/png,.png",
+      toolHref: "tools/bulk-png-to-webp.html",
+      title: "Drop PNG images here",
+      sub: "or click to choose .png files",
+    },
+    bulkJpegPanel: {
+      ext: "jpeg",
+      accept: "image/jpeg,.jpeg",
+      toolHref: "tools/bulk-jpeg-to-webp.html",
+      title: "Drop JPEG images here",
+      sub: "or click to choose .jpeg files",
+    },
+    bulkJpgPanel: {
+      ext: "jpg",
+      accept: "image/jpeg,.jpg",
+      toolHref: "tools/bulk-jpg-to-webp.html",
+      title: "Drop JPG images here",
+      sub: "or click to choose .jpg files",
+    },
+  };
+
+  const getModeFromPanel = (panelId) => modeByPanel[panelId] || modeByPanel.bulkPngPanel;
+  const getFileExt = (file) => {
+    const match = file.name.match(/\.([^.]+)$/);
+    return match ? match[1].toLowerCase() : "";
+  };
+
+  let activePanelId =
+    document.querySelector(".bulk-switch.is-active")?.dataset.target || "bulkPngPanel";
+  let homeItems = [];
+  let homeSeq = 0;
+
+  function setQualityText() {
+    homeBulkQualityValue.textContent = homeBulkQuality.value;
+  }
+
+  function renderHomeList() {
+    homeBulkList.innerHTML = "";
+
+    for (const item of homeItems) {
+      const nameCell = document.createElement("div");
+      nameCell.className = "cell";
+      nameCell.textContent = item.file.name;
+
+      const statusCell = document.createElement("div");
+      statusCell.className = "cell";
+      const badge = document.createElement("span");
+      badge.className = `badge ${item.error ? "error" : ""}`;
+      badge.textContent = item.error ? "Failed" : item.blob ? "Ready" : "Pending";
+      statusCell.appendChild(badge);
+
+      const sizeCell = document.createElement("div");
+      sizeCell.className = "cell";
+      sizeCell.textContent = item.blob ? bytesToSize(item.blob.size) : "-";
+
+      const dlCell = document.createElement("div");
+      dlCell.className = "cell";
+      if (item.blob && item.url) {
+        const link = document.createElement("a");
+        link.className = "badge";
+        link.textContent = "Download";
+        link.href = item.url;
+        link.download = item.outputName;
+        dlCell.appendChild(link);
+      } else {
+        dlCell.textContent = "-";
+      }
+
+      homeBulkList.appendChild(nameCell);
+      homeBulkList.appendChild(statusCell);
+      homeBulkList.appendChild(sizeCell);
+      homeBulkList.appendChild(dlCell);
+    }
+
+    homeBulkConvertBtn.disabled = homeItems.length === 0;
+    homeBulkClearBtn.disabled = homeItems.length === 0;
+    homeBulkDownloadAllBtn.disabled = !homeItems.some((item) => item.blob);
+  }
+
+  function clearHomeItems() {
+    for (const item of homeItems) {
+      if (item.url) URL.revokeObjectURL(item.url);
+      if (item.beforeUrl) URL.revokeObjectURL(item.beforeUrl);
+    }
+    homeItems = [];
+    homeBulkFileInput.value = "";
+    if (homeBulkNote) homeBulkNote.textContent = "";
+    renderHomeList();
+  }
+
+  function matchesActiveMode(file) {
+    const mode = getModeFromPanel(activePanelId);
+    const ext = getFileExt(file);
+    if (mode.ext === "png") return file.type === "image/png" || ext === "png";
+    if (mode.ext === "jpeg") return ext === "jpeg";
+    if (mode.ext === "jpg") return ext === "jpg";
+    return false;
+  }
+
+  function addHomeFiles(fileList) {
+    let added = 0;
+    let skipped = 0;
+
+    for (const file of fileList) {
+      if (!matchesActiveMode(file)) {
+        skipped += 1;
+        continue;
+      }
+
+      homeItems.push({
+        id: `home-item-${++homeSeq}`,
+        file,
+        blob: null,
+        url: null,
+        beforeUrl: URL.createObjectURL(file),
+        outputName: file.name.replace(/\.[^.]+$/, "") + ".webp",
+        error: null,
+      });
+      added += 1;
+    }
+
+    if (homeBulkNote) {
+      if (skipped > 0 && added > 0) {
+        homeBulkNote.textContent = `${added} file(s) added. ${skipped} skipped because they do not match the selected extension.`;
+      } else if (skipped > 0) {
+        homeBulkNote.textContent = "No files added. Use files that match the selected extension.";
+      } else {
+        homeBulkNote.textContent = "";
+      }
+    }
+
+    renderHomeList();
+  }
+
+  async function convertHomeFile(file, quality) {
+    const imageBitmap = await createImageBitmap(file);
+    const canvas = document.createElement("canvas");
+    canvas.width = imageBitmap.width;
+    canvas.height = imageBitmap.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(imageBitmap, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise((resolve) =>
+      canvas.toBlob(resolve, "image/webp", quality)
+    );
+    if (!blob) throw new Error("Conversion failed");
+    return blob;
+  }
+
+  async function convertHomeAll() {
+    if (homeItems.length === 0) return;
+    const quality = Number(homeBulkQuality.value) / 100;
+    const originalText = homeBulkConvertBtn.textContent;
+    homeBulkConvertBtn.textContent = "Processing...";
+    homeBulkConvertBtn.classList.add("is-loading");
+    homeBulkConvertBtn.disabled = true;
+
+    for (const item of homeItems) {
+      item.error = null;
+      if (item.url) URL.revokeObjectURL(item.url);
+      item.url = null;
+      item.blob = null;
+    }
+    renderHomeList();
+
+    for (const item of homeItems) {
+      try {
+        const blob = await convertHomeFile(item.file, quality);
+        item.blob = blob;
+        item.url = URL.createObjectURL(blob);
+      } catch (err) {
+        item.error = err.message || "Failed";
+      }
+      renderHomeList();
+    }
+
+    homeBulkConvertBtn.textContent = originalText;
+    homeBulkConvertBtn.classList.remove("is-loading");
+    renderHomeList();
+  }
+
+  async function downloadHomeAll() {
+    const readyItems = homeItems.filter((item) => item.blob && item.url);
+    if (readyItems.length === 0) return;
+
+    if (typeof JSZip !== "function") {
+      for (const item of readyItems) {
+        const a = document.createElement("a");
+        a.href = item.url;
+        a.download = item.outputName;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+      return;
+    }
+
+    const originalText = homeBulkDownloadAllBtn.textContent;
+    homeBulkDownloadAllBtn.textContent = "Preparing ZIP...";
+    homeBulkDownloadAllBtn.classList.add("is-loading");
+    homeBulkDownloadAllBtn.disabled = true;
+
+    const zip = new JSZip();
+    for (const item of readyItems) {
+      zip.file(item.outputName, item.blob);
+    }
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    const zipUrl = URL.createObjectURL(zipBlob);
+    const a = document.createElement("a");
+    a.href = zipUrl;
+    a.download = "converted-images.zip";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(zipUrl), 1000);
+
+    homeBulkDownloadAllBtn.textContent = originalText;
+    homeBulkDownloadAllBtn.classList.remove("is-loading");
+    renderHomeList();
+  }
+
+  function applyMode(panelId) {
+    activePanelId = panelId;
+    const mode = getModeFromPanel(activePanelId);
+    homeBulkFileInput.accept = mode.accept;
+    if (homeBulkDropTitle) homeBulkDropTitle.textContent = mode.title;
+    if (homeBulkDropSub) homeBulkDropSub.textContent = mode.sub;
+    if (homeBulkOpenToolLink) homeBulkOpenToolLink.href = mode.toolHref;
+    clearHomeItems();
+  }
+
+  homeBulkQuality.addEventListener("input", setQualityText);
+  homeBulkFileInput.addEventListener("change", (event) => {
+    addHomeFiles(event.target.files || []);
+  });
+  homeBulkConvertBtn.addEventListener("click", convertHomeAll);
+  homeBulkDownloadAllBtn.addEventListener("click", downloadHomeAll);
+  homeBulkClearBtn.addEventListener("click", clearHomeItems);
+
+  ["dragenter", "dragover"].forEach((evt) =>
+    homeBulkDropZone.addEventListener(evt, (event) => {
+      event.preventDefault();
+      homeBulkDropZone.classList.add("dragover");
+    })
+  );
+  ["dragleave", "drop"].forEach((evt) =>
+    homeBulkDropZone.addEventListener(evt, (event) => {
+      event.preventDefault();
+      homeBulkDropZone.classList.remove("dragover");
+    })
+  );
+  homeBulkDropZone.addEventListener("drop", (event) => {
+    if (event.dataTransfer?.files) addHomeFiles(event.dataTransfer.files);
+  });
+
+  document.addEventListener("bulk-panel-change", (event) => {
+    if (!event.detail?.targetId) return;
+    applyMode(event.detail.targetId);
+  });
+
+  setQualityText();
+  applyMode(activePanelId);
+}
+
+if ([
+  "webp-converter",
+  "bulk-jpg-to-webp",
+  "bulk-jpeg-to-webp",
+  "bulk-png-to-webp",
+  "webp-to-jpg",
+  "webp-to-avif",
+  "image-compressor",
+  "heic-to-webp"
+].includes(tool)) {
   initFileTool();
 }
 
@@ -682,6 +1021,9 @@ if (tool === "lazyload-tester") {
 if (tool === "pagespeed-image-checker") {
   initPageSpeedChecker();
 }
+
+initBulkSwitcher();
+initHomeBulkConverter();
 
 document.querySelectorAll(".mobile-toggle").forEach((btn) => {
   btn.addEventListener("click", (event) => {
